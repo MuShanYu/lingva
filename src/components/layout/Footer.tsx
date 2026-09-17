@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { IconGithub } from '@/components/icons'
 
 const navItems = [
   { href: '#overview', label: '功能' },
@@ -17,7 +16,7 @@ export default function Footer() {
             <img src={`${import.meta.env.BASE_URL}favicon.png`} alt="LingVa" className="h-6 w-6" />
             LingVa
           </Link>
-          <p className="mt-2 text-xs text-white/40">少一点翻译，多一点理解。</p>
+          <p className="mt-2 text-xs text-white/40">翻译，不应该打断你的阅读。</p>
         </div>
 
         <nav className="flex flex-wrap items-center justify-center gap-6">
@@ -27,14 +26,10 @@ export default function Footer() {
             </a>
           ))}
         </nav>
-
-        <a href="#" aria-label="GitHub" className="text-white/50 transition hover:text-white">
-          <IconGithub className="h-5 w-5" />
-        </a>
       </div>
 
       <p className="mt-8 text-center text-xs text-white/30">
-        © {new Date().getFullYear()} LingVa. Open Source Project.
+        © {new Date().getFullYear()} LingVa.
       </p>
     </footer>
   )

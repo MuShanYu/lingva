@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { IconGithub } from '@/components/icons'
 
 const navItems = [
   { href: '#overview', label: '功能' },
@@ -26,13 +25,6 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <a
-            href="#"
-            aria-label="GitHub"
-            className="hidden text-gray-500 transition hover:text-gray-900 sm:block"
-          >
-            <IconGithub className="h-5 w-5" />
-          </a>
           <a
             href="#download"
             className="rounded-full bg-brand px-4 py-2 text-sm font-medium text-white transition hover:bg-brand-dark"

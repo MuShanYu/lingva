@@ -1,6 +1,6 @@
 import MountainBand from '@/components/mockups/MountainBand'
 import {
-  IconOpenSource,
+  IconFree,
   IconNoAds,
   IconNoBackend,
   IconNoTracking,
@@ -8,7 +8,7 @@ import {
 } from '@/components/icons'
 
 const badges = [
-  { icon: IconOpenSource, label: '开源' },
+  { icon: IconFree, label: '免费' },
   { icon: IconNoAds, label: '无广告' },
   { icon: IconNoBackend, label: '无后端' },
   { icon: IconNoTracking, label: '不追踪' },
@@ -21,10 +21,10 @@ export default function Cta() {
       <MountainBand />
 
       <div className="relative mx-auto max-w-2xl">
-        <span className="text-xs font-medium tracking-wide text-brand uppercase">Open source</span>
-        <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">开放地构建</h2>
+        <span className="text-xs font-medium tracking-wide text-brand uppercase">Get started</span>
+        <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">现在开始，专注阅读</h2>
         <p className="mt-4 text-white/60">
-          安装 LingVa，让翻译真正属于你。不追踪、可自带 API，代码完全开源。
+          安装 LingVa，让翻译真正属于你。永久免费，不追踪，可自带 API。
         </p>
 
         <div className="mt-8">
@@ -35,7 +35,7 @@ export default function Cta() {
             添加到 Chrome
           </a>
         </div>
-        <p className="mt-3 text-xs text-white/40">免费 · 开源 · 无广告</p>
+        <p className="mt-3 text-xs text-white/40">免费 · 无广告 · 隐私安全</p>
 
         <div className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-4">
           {badges.map((badge) => (
