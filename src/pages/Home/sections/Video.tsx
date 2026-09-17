@@ -1,7 +1,5 @@
-import ScreenshotCard from '@/components/mockups/ScreenshotCard'
 import SettingsCardMock from '@/components/mockups/SettingsCardMock'
 import PlatformList from '@/components/mockups/PlatformList'
-import subtitleImg from '@/assets/img/视频双语字幕.png'
 
 export default function Video() {
   return (
@@ -20,11 +18,15 @@ export default function Video() {
         </div>
 
         <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-[1.4fr_1fr]">
-          <ScreenshotCard
-            src={subtitleImg}
-            alt="LingVa 视频双语字幕，TED 演讲双语对照"
-            className="h-full min-h-[320px] object-cover"
-          />
+          <div className="h-full min-h-[320px] overflow-hidden rounded-2xl border border-gray-200 shadow-2xl shadow-gray-300/40">
+            <iframe
+              src="https://www.youtube.com/embed/eVFzbxmKNUw"
+              title="YouTube 视频播放器"
+              className="h-full min-h-[320px] w-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
 
           <div className="space-y-6">
             <PlatformList />
