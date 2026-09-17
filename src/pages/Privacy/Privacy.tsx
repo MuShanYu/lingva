@@ -19,17 +19,17 @@ const items = [
 
 export default function Privacy() {
   return (
-    <section className="mx-auto max-w-3xl px-6 pb-24 pt-32 text-white/80">
-      <h1 className="text-3xl font-semibold text-white">隐私政策</h1>
-      <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
+    <section className="mx-auto max-w-3xl px-6 pb-24 pt-32 text-gray-700">
+      <h1 className="text-3xl font-semibold text-gray-900">隐私政策</h1>
+      <p className="mt-6 max-w-xl text-sm leading-relaxed text-gray-500">
         LingVa 没有自己的服务器，所有数据都留在你自己的电脑上。以下是每一类数据的具体去向：
       </p>
 
       <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
         {items.map((item) => (
-          <div key={item.title} className="rounded-2xl border border-white/10 p-6">
-            <h2 className="text-base font-medium text-white">{item.title}</h2>
-            <p className="mt-2 text-sm leading-relaxed text-white/60">{item.body}</p>
+          <div key={item.title} className="rounded-2xl border border-gray-200 p-6">
+            <h2 className="text-base font-medium text-gray-900">{item.title}</h2>
+            <p className="mt-2 text-sm leading-relaxed text-gray-500">{item.body}</p>
           </div>
         ))}
       </div>

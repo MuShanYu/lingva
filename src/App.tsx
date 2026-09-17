@@ -6,7 +6,7 @@ import Privacy from '@/pages/Privacy/Privacy'
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#0b0d12]">
+    <div className="min-h-screen bg-white">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -1,16 +1,26 @@
 import Hero from './sections/Hero'
-import Features from './sections/Features'
-import Stats from './sections/Stats'
-import Workflow from './sections/Workflow'
+import Overview from './sections/Overview'
+import Learning from './sections/Learning'
+import Engines from './sections/Engines'
+import Compare from './sections/Compare'
+import Video from './sections/Video'
+import Reading from './sections/Reading'
+import Usage from './sections/Usage'
+import Trust from './sections/Trust'
 import Cta from './sections/Cta'
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Features />
-      <Stats />
-      <Workflow />
+      <Overview />
+      <Learning />
+      <Engines />
+      <Compare />
+      <Video />
+      <Reading />
+      <Usage />
+      <Trust />
       <Cta />
     </>
   )

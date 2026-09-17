@@ -188,7 +188,15 @@ export default function Aurora(props: AuroraProps) {
     ctn.appendChild(gl.canvas);
 
     let animateId = 0;
+    let isVisible = true;
+    let cachedStops: string[] | undefined;
+    let cachedStopsArray: number[][] = colorStopsArray;
+
     const update = (t: number) => {
+      if (!isVisible) {
+        animateId = 0;
+        return;
+      }
       animateId = requestAnimationFrame(update);
       const { time = t * 0.01, speed = 1.0 } = propsRef.current;
       if (program) {
@@ -197,18 +205,36 @@ export default function Aurora(props: AuroraProps) {
         program.uniforms.uBlend.value = propsRef.current.blend ?? blend;
         program.uniforms.uLightMode.value = (propsRef.current.lightMode ?? lightMode) ? 1 : 0;
         const stops = propsRef.current.colorStops ?? colorStops;
-        program.uniforms.uColorStops.value = stops.map((hex: string) => {
-          const c = new Color(hex);
-          return [c.r, c.g, c.b];
-        });
+        if (stops !== cachedStops) {
+          cachedStops = stops;
+          cachedStopsArray = stops.map((hex: string) => {
+            const c = new Color(hex);
+            return [c.r, c.g, c.b];
+          });
+        }
+        program.uniforms.uColorStops.value = cachedStopsArray;
         renderer.render({ scene: mesh });
       }
     };
     animateId = requestAnimationFrame(update);
 
+    // Offscreen canvases still cost GPU/main-thread time every frame, which
+    // shows up as scroll jank once the user has scrolled past the hero.
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible && !animateId) {
+          animateId = requestAnimationFrame(update);
+        }
+      },
+      { threshold: 0 }
+    );
+    visibilityObserver.observe(ctn);
+
     resize();
 
     return () => {
+      visibilityObserver.disconnect();
       cancelAnimationFrame(animateId);
       window.removeEventListener('resize', resize);
       if (ctn && gl.canvas.parentNode === ctn) {

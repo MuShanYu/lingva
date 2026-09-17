@@ -6,10 +6,11 @@
     'Microsoft YaHei', sans-serif;
   --color-brand: #1677ff;
   --color-brand-dark: #0958d9;
+  --color-accent-purple: #7c3aed;
 }
 
 html {
-  color-scheme: light dark;
+  color-scheme: light;
 }
 
 body {
@@ -19,11 +20,4 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: #ffffff;
   color: #1f2329;
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #0b0d12;
-    color: #e6e6e6;
-  }
 }
