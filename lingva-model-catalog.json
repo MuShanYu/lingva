@@ -1,0 +1,175 @@
+{
+  "schemaVersion": "1.0",
+  "updatedAt": "2026-09-20",
+  "priceUnit": "USD per 1M tokens",
+  "providers": [
+    {
+      "id": "deepseek",
+      "label": "DeepSeek",
+      "models": [
+        {
+          "id": "deepseek-flash",
+          "label": "DeepSeek Flash",
+          "modalities": { "input": ["text"], "output": ["text"] },
+          "cost": {
+            "input": 0.15,
+            "output": 0.6,
+            "cache_read": 0.003,
+            "notes": "以上为非高峰价格；高峰时段（周一至周五 01:00-04:00、06:00-10:00 UTC）输入输出价格翻倍"
+          },
+          "description": "DeepSeek 主力工作模型，支持思考与非思考双模式，适合日常对话、摘要提取、代码补全等高频场景。"
+        },
+        {
+          "id": "deepseek-v4-pro",
+          "label": "DeepSeek V4 Pro",
+          "modalities": { "input": ["text"], "output": ["text"] },
+          "cost": {
+            "input": 0.66,
+            "output": 1.98,
+            "notes": "以上为非高峰价格；高峰时段（周一至周五 01:00-04:00、06:00-10:00 UTC）输入输出价格翻倍"
+          },
+          "description": "DeepSeek 进阶模型，推理与代码质量高于 Flash，适合对准确性要求更高的复杂任务，价格相应更高。"
+        }
+      ]
+    },
+    {
+      "id": "gemini",
+      "label": "Gemini",
+      "models": [
+        {
+          "id": "gemini-3.1-flash-lite",
+          "label": "Gemini 3.1 Flash-Lite",
+          "modalities": { "input": ["text"], "output": ["text"] },
+          "cost": { "input": 0.25, "output": 1.5 },
+          "description": "经济高效模型，针对高调用量智能体任务、翻译和简单数据处理优化。"
+        },
+        {
+          "id": "gemini-3.5-flash-lite",
+          "label": "Gemini 3.5 Flash-Lite",
+          "modalities": { "input": ["text"], "output": ["text"] },
+          "cost": { "input": 0.3, "output": 2.5 },
+          "description": "经济高效模型，针对高调用量智能体任务、翻译和简单数据处理优化。"
+        },
+        {
+          "id": "gemini-3.7-flash",
+          "label": "Gemini 3.7 Flash",
+          "modalities": { "input": ["text"], "output": ["text"] },
+          "cost": {
+            "input": 0.75,
+            "output": 3.75,
+            "notes": "2027-01-01 起输入价格调整为 1.5 美元，输出调整为 7.5 美元"
+          },
+          "description": "Google 高速高效的 Flash 模型，适合日常编码、调用智能体工具并可靠执行多步操作。"
+        },
+        {
+          "id": "gemini-3.8-flash",
+          "label": "Gemini 3.8 Flash",
+          "modalities": { "input": ["text"], "output": ["text"] },
+          "cost": {
+            "input": 0.75,
+            "output": 3.75,
+            "notes": "官方列为 Stable；2027-01-01 起输入价格调整为 1.5 美元，输出调整为 7.5 美元"
+          },
+          "description": "Google 旗下最智能的 Flash 模型，面向长期软件工程、自主智能体与复杂企业工作流设计。"
+        }
+      ]
+    },
+    {
+      "id": "grok",
+      "label": "Grok",
+      "models": [
+        {
+          "id": "grok-4.3",
+          "label": "Grok 4.3",
+          "modalities": { "input": ["text"], "output": ["text"] },
+          "contextWindow": "1M",
+          "cost": { "input": 1.25, "output": 2.5 },
+          "description": "xAI 性价比档模型，推理能力低于旗舰 Grok 4.6，适合成本敏感的常规任务。"
+        },
+        {
+          "id": "grok-4.6",
+          "label": "Grok 4.6",
+          "modalities": { "input": ["text"], "output": ["text"] },
+          "contextWindow": "500K",
+          "cost": { "input": 2, "output": 6 },
+          "description": "xAI 旗舰模型，面向代码及通用场景，具备代理式工具调用能力，幻觉率低，推理强度可配置。"
+        }
+      ]
+    },
+    {
+      "id": "glm",
+      "label": "GLM（智谱）",
+      "models": [
+        {
+          "id": "glm-5.3",
+          "label": "GLM-5.3",
+          "modalities": { "input": ["text"], "output": ["text"] },
+          "contextWindow": "1M",
+          "maxOutputTokens": "128K",
+          "cost": { "input": 1.19, "output": 4.18 },
+          "description": "智谱最新旗舰模型，在 GLM-5.2 基座上强化后训练，编程与长程任务能力显著提升，网络安全与漏洞发现能力突出，仅支持文本模态。"
+        },
+        {
+          "id": "glm-5.3-flash",
+          "label": "GLM-5.3-Flash",
+          "modalities": { "input": ["text"], "output": ["text"] },
+          "cost": { "input": 0.12, "output": 0.42 },
+          "description": "GLM-5 系列首个原生多模态模型。"
+        },
+        {
+          "id": "glm-4.7-flash",
+          "label": "GLM-4.7-Flash",
+          "modalities": { "input": ["text"], "output": ["text"] },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "notes": "免费模型，配合新手代金券几乎零成本原型验证"
+          },
+          "description": "免费模型，适合原型验证，存在速率与上下文限制。"
+        }
+      ]
+    },
+    {
+      "id": "qwen",
+      "label": "Qwen（通义千问）",
+      "models": [
+        {
+          "id": "qwen-mt-flash",
+          "label": "Qwen-MT-Flash",
+          "modalities": { "input": ["text"], "output": ["text"] },
+          "cost": { "input": 0.16, "output": 0.49 },
+          "description": "Qwen3 架构的专用翻译模型，覆盖 92 种语言，支持术语干预、格式保留与领域适配，翻译场景性价比高。"
+        },
+        {
+          "id": "qwen3.7-flash",
+          "label": "Qwen3.7-Flash",
+          "modalities": { "input": ["text"], "output": ["text"] },
+          "cost": { "input": 0.03, "output": 0.13 },
+          "description": "Qwen3.7 原生视觉-语言 Flash 模型，多模态理解与智能体执行能力全面升级，擅长物体识别、空间感知及搜索/CI 代理场景。"
+        },
+        {
+          "id": "qwen3.7-max",
+          "label": "Qwen3.7-Max",
+          "modalities": { "input": ["text"], "output": ["text"] },
+          "cost": { "input": 2.5, "output": 7.5 },
+          "description": "Qwen3.7 系列旗舰模型，面向智能体场景设计，在编程、办公生产力任务及长期自主执行方面表现突出，当前提供纯文本接口。"
+        },
+        {
+          "id": "qwen3.8-flash",
+          "label": "Qwen3.8-Flash",
+          "modalities": { "input": ["text"], "output": ["text"] },
+          "contextWindow": "1M",
+          "cost": { "input": 0.15, "output": 0.47 },
+          "description": "Qwen 系列最新多模态模型，原生支持 100 万 token 上下文，推理生成速度快，擅长编程辅助、智能代理工作流与视觉理解，兼容 OpenAI/Anthropic API 协议。"
+        },
+        {
+          "id": "qwen3.8-max",
+          "label": "Qwen3.8-Max",
+          "modalities": { "input": ["text"], "output": ["text"] },
+          "cost": { "input": 2, "output": 6 },
+          "description": "2.4 万亿参数 MoE 旗舰模型，具备原生视觉理解与长周期自主规划能力，擅长复杂编码及专业领域任务的端到端产出。"
+        }
+      ]
+    }
+  ]
+}
