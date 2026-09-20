@@ -10,13 +10,26 @@
         {
           "id": "deepseek-flash",
           "label": "DeepSeek Flash",
-          "status": "deprecated",
+          "status": "active",
           "modalities": { "input": ["text"], "output": ["text"] },
           "cost": {
             "input": 0.15,
             "output": 0.6,
             "cache_read": 0.003,
-            "notes": "以上为非高峰价格；高峰时段（周一至周五 01:00-04:00、06:00-10:00 UTC）输入输出价格翻倍"
+            "pricingWindows": [
+              {
+                "timezone": "UTC",
+                "days": [1, 2, 3, 4, 5],
+                "ranges": [
+                  { "start": "01:00", "end": "04:00" },
+                  { "start": "06:00", "end": "10:00" }
+                ],
+                "input": 0.3,
+                "output": 1.2,
+                "cache_read": 0.006
+              }
+            ],
+            "notes": "以上为非高峰价格；高峰时段（周一至周五 01:00-04:00、06:00-10:00 UTC）输入输出价格翻倍，具体数值见 pricingWindows"
           },
           "description": "DeepSeek 主力工作模型，支持思考与非思考双模式，适合日常对话、摘要提取、代码补全等高频场景。"
         },
@@ -28,7 +41,19 @@
           "cost": {
             "input": 0.66,
             "output": 1.98,
-            "notes": "以上为非高峰价格；高峰时段（周一至周五 01:00-04:00、06:00-10:00 UTC）输入输出价格翻倍"
+            "pricingWindows": [
+              {
+                "timezone": "UTC",
+                "days": [1, 2, 3, 4, 5],
+                "ranges": [
+                  { "start": "01:00", "end": "04:00" },
+                  { "start": "06:00", "end": "10:00" }
+                ],
+                "input": 1.32,
+                "output": 3.96
+              }
+            ],
+            "notes": "以上为非高峰价格；高峰时段（周一至周五 01:00-04:00、06:00-10:00 UTC）输入输出价格翻倍，具体数值见 pricingWindows"
           },
           "description": "DeepSeek 进阶模型，推理与代码质量高于 Flash，适合对准确性要求更高的复杂任务，价格相应更高。"
         }
