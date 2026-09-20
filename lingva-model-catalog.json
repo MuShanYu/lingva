@@ -19,7 +19,7 @@
             "pricingWindows": [
               {
                 "timezone": "UTC",
-                "days": ["mon", "tue", "wed", "thu", "fri"],
+                "days": ["mon", "tue", "wed", "thu", "fri", "sun"],
                 "ranges": [
                   { "start": "01:00", "end": "04:00" },
                   { "start": "06:00", "end": "10:00" }
