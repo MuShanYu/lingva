@@ -10,6 +10,7 @@
         {
           "id": "deepseek-flash",
           "label": "DeepSeek Flash",
+          "status": "active",
           "modalities": { "input": ["text"], "output": ["text"] },
           "cost": {
             "input": 0.15,
@@ -22,6 +23,7 @@
         {
           "id": "deepseek-v4-pro",
           "label": "DeepSeek V4 Pro",
+          "status": "active",
           "modalities": { "input": ["text"], "output": ["text"] },
           "cost": {
             "input": 0.66,
@@ -39,6 +41,7 @@
         {
           "id": "gemini-3.1-flash-lite",
           "label": "Gemini 3.1 Flash-Lite",
+          "status": "active",
           "modalities": { "input": ["text"], "output": ["text"] },
           "cost": { "input": 0.25, "output": 1.5 },
           "description": "经济高效模型，针对高调用量智能体任务、翻译和简单数据处理优化。"
@@ -46,6 +49,7 @@
         {
           "id": "gemini-3.5-flash-lite",
           "label": "Gemini 3.5 Flash-Lite",
+          "status": "active",
           "modalities": { "input": ["text"], "output": ["text"] },
           "cost": { "input": 0.3, "output": 2.5 },
           "description": "经济高效模型，针对高调用量智能体任务、翻译和简单数据处理优化。"
@@ -53,6 +57,7 @@
         {
           "id": "gemini-3.7-flash",
           "label": "Gemini 3.7 Flash",
+          "status": "active",
           "modalities": { "input": ["text"], "output": ["text"] },
           "cost": {
             "input": 0.75,
@@ -64,6 +69,7 @@
         {
           "id": "gemini-3.8-flash",
           "label": "Gemini 3.8 Flash",
+          "status": "active",
           "modalities": { "input": ["text"], "output": ["text"] },
           "cost": {
             "input": 0.75,
@@ -81,6 +87,7 @@
         {
           "id": "grok-4.3",
           "label": "Grok 4.3",
+          "status": "active",
           "modalities": { "input": ["text"], "output": ["text"] },
           "contextWindow": "1M",
           "cost": { "input": 1.25, "output": 2.5 },
@@ -89,6 +96,7 @@
         {
           "id": "grok-4.6",
           "label": "Grok 4.6",
+          "status": "active",
           "modalities": { "input": ["text"], "output": ["text"] },
           "contextWindow": "500K",
           "cost": { "input": 2, "output": 6 },
@@ -103,6 +111,7 @@
         {
           "id": "glm-5.3",
           "label": "GLM-5.3",
+          "status": "active",
           "modalities": { "input": ["text"], "output": ["text"] },
           "contextWindow": "1M",
           "maxOutputTokens": "128K",
@@ -112,6 +121,7 @@
         {
           "id": "glm-5.3-flash",
           "label": "GLM-5.3-Flash",
+          "status": "active",
           "modalities": { "input": ["text"], "output": ["text"] },
           "cost": { "input": 0.12, "output": 0.42 },
           "description": "GLM-5 系列首个原生多模态模型。"
@@ -119,6 +129,7 @@
         {
           "id": "glm-4.7-flash",
           "label": "GLM-4.7-Flash",
+          "status": "active",
           "modalities": { "input": ["text"], "output": ["text"] },
           "cost": {
             "input": 0,
@@ -136,6 +147,7 @@
         {
           "id": "qwen-mt-flash",
           "label": "Qwen-MT-Flash",
+          "status": "active",
           "modalities": { "input": ["text"], "output": ["text"] },
           "cost": { "input": 0.16, "output": 0.49 },
           "description": "Qwen3 架构的专用翻译模型，覆盖 92 种语言，支持术语干预、格式保留与领域适配，翻译场景性价比高。"
@@ -143,6 +155,7 @@
         {
           "id": "qwen3.7-flash",
           "label": "Qwen3.7-Flash",
+          "status": "active",
           "modalities": { "input": ["text"], "output": ["text"] },
           "cost": { "input": 0.03, "output": 0.13 },
           "description": "Qwen3.7 原生视觉-语言 Flash 模型，多模态理解与智能体执行能力全面升级，擅长物体识别、空间感知及搜索/CI 代理场景。"
@@ -150,6 +163,7 @@
         {
           "id": "qwen3.7-max",
           "label": "Qwen3.7-Max",
+          "status": "active",
           "modalities": { "input": ["text"], "output": ["text"] },
           "cost": { "input": 2.5, "output": 7.5 },
           "description": "Qwen3.7 系列旗舰模型，面向智能体场景设计，在编程、办公生产力任务及长期自主执行方面表现突出，当前提供纯文本接口。"
@@ -157,6 +171,7 @@
         {
           "id": "qwen3.8-flash",
           "label": "Qwen3.8-Flash",
+          "status": "active",
           "modalities": { "input": ["text"], "output": ["text"] },
           "contextWindow": "1M",
           "cost": { "input": 0.15, "output": 0.47 },
@@ -165,6 +180,7 @@
         {
           "id": "qwen3.8-max",
           "label": "Qwen3.8-Max",
+          "status": "active",
           "modalities": { "input": ["text"], "output": ["text"] },
           "cost": { "input": 2, "output": 6 },
           "description": "2.4 万亿参数 MoE 旗舰模型，具备原生视觉理解与长周期自主规划能力，擅长复杂编码及专业领域任务的端到端产出。"
