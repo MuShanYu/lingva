@@ -170,14 +170,6 @@
       "label": "Qwen（通义千问）",
       "models": [
         {
-          "id": "qwen-mt-flash",
-          "label": "Qwen-MT-Flash",
-          "status": "active",
-          "modalities": { "input": ["text"], "output": ["text"] },
-          "cost": { "input": 0.16, "output": 0.49 },
-          "description": "Qwen3 架构的专用翻译模型，覆盖 92 种语言，支持术语干预、格式保留与领域适配，翻译场景性价比高。"
-        },
-        {
           "id": "qwen3.7-flash",
           "label": "Qwen3.7-Flash",
           "status": "active",
