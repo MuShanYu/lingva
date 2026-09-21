@@ -2,6 +2,8 @@ import { TextSelect, BookOpen, Star, RotateCcw, Brain } from 'lucide-react'
 import ScreenshotCard from '@/components/mockups/ScreenshotCard'
 import ProcessSteps from '@/components/mockups/ProcessSteps'
 import vocabListImg from '@/assets/img/生词本列表.png'
+import Reveal from '@/components/Reveal'
+import SectionGlow from '@/components/SectionGlow'
 
 const iconProps = { className: 'h-4 w-4', strokeWidth: 1.75 }
 
@@ -15,8 +17,9 @@ const steps = [
 
 export default function Learning() {
   return (
-    <section id="learning" className="bg-white px-6 py-24">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-2">
+    <section id="learning" className="relative overflow-hidden bg-[#F8FAFC] px-6 py-24">
+      <SectionGlow position="right" />
+      <Reveal className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-2">
         <div>
           <span className="text-xs font-medium tracking-wide text-brand uppercase">
             Build your vocabulary
@@ -40,7 +43,7 @@ export default function Learning() {
             className="max-w-xs"
           />
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }

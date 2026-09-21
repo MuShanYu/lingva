@@ -1,10 +1,15 @@
+import ScreenshotCard from '@/components/mockups/ScreenshotCard'
 import SettingsCardMock from '@/components/mockups/SettingsCardMock'
 import PlatformList from '@/components/mockups/PlatformList'
+import subtitleImg from '@/assets/img/视频双语字幕.png'
+import Reveal from '@/components/Reveal'
+import SectionGlow from '@/components/SectionGlow'
 
 export default function Video() {
   return (
-    <section id="video" className="bg-gray-50 px-6 py-24">
-      <div className="mx-auto max-w-6xl">
+    <section id="video" className="relative overflow-hidden bg-white px-6 py-24">
+      <SectionGlow position="left" />
+      <Reveal className="relative mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-medium tracking-wide text-brand uppercase">
             Video subtitles
@@ -18,22 +23,18 @@ export default function Video() {
         </div>
 
         <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-[1.4fr_1fr]">
-          <div className="h-full min-h-[320px] overflow-hidden rounded-2xl border border-gray-200 shadow-2xl shadow-gray-300/40">
-            <iframe
-              src="https://www.youtube.com/embed/eVFzbxmKNUw"
-              title="YouTube 视频播放器"
-              className="h-full min-h-[320px] w-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
-          </div>
+          <ScreenshotCard
+            src={subtitleImg}
+            alt="LingVa 视频双语字幕，TED 演讲双语对照"
+            className="h-full min-h-[320px] object-cover"
+          />
 
           <div className="space-y-6">
             <PlatformList />
             <SettingsCardMock />
           </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }

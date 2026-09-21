@@ -34,18 +34,18 @@ function EngineBadge({ item }: { item: EngineItem }) {
       <img
         src={`${import.meta.env.BASE_URL}favicon.png`}
         alt=""
-        className="h-5 w-5 rounded shrink-0"
+        className="h-4 w-4 rounded shrink-0"
       />
     )
   }
   if (item.logoSrc) {
-    return <img src={item.logoSrc} alt="" className="h-5 w-5 shrink-0 object-contain" />
+    return <img src={item.logoSrc} alt="" className="h-4 w-4 shrink-0 object-contain" />
   }
   if (item.icon) {
     return (
       <svg
         viewBox="0 0 24 24"
-        className="h-5 w-5 shrink-0"
+        className="h-4 w-4 shrink-0"
         fill={`#${item.icon.hex}`}
         aria-hidden
       >
@@ -56,37 +56,38 @@ function EngineBadge({ item }: { item: EngineItem }) {
   return null
 }
 
-function EngineColumn({ items }: { items: EngineItem[] }) {
+function EngineRow({ items }: { items: EngineItem[] }) {
   return (
-    <ul className="mt-3 space-y-3">
+    <div className="mt-3 flex flex-wrap gap-2">
       {items.map((item) => (
-        <li key={item.name} className="flex items-center gap-2.5 text-sm text-gray-700">
+        <span
+          key={item.name}
+          className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700"
+        >
           <EngineBadge item={item} />
           {item.name}
-        </li>
+        </span>
       ))}
-    </ul>
+    </div>
   )
 }
 
 export default function EngineList() {
   return (
-    <div className="grid grid-cols-2 gap-0">
-      <div className="border-r border-gray-100 pr-8">
-        <div className="flex items-center gap-1.5 text-xs font-medium tracking-wide text-gray-400 uppercase">
-          <Languages className="h-3.5 w-3.5" />
-          机器翻译
-        </div>
-        <EngineColumn items={machineTranslation} />
+    <div>
+      <div className="flex items-center gap-1.5 text-xs font-medium tracking-wide text-gray-400 uppercase">
+        <Languages className="h-3.5 w-3.5" />
+        机器翻译
       </div>
-      <div className="pl-8">
-        <div className="flex items-center gap-1.5 text-xs font-medium tracking-wide text-gray-400 uppercase">
-          <Sparkles className="h-3.5 w-3.5" />
-          AI 服务商
-        </div>
-        <EngineColumn items={aiProviders} />
+      <EngineRow items={machineTranslation} />
+
+      <div className="mt-6 flex items-center gap-1.5 text-xs font-medium tracking-wide text-gray-400 uppercase">
+        <Sparkles className="h-3.5 w-3.5" />
+        AI 服务商
       </div>
-      <div className="col-span-2 mt-4 border-t border-gray-100 pt-4">
+      <EngineRow items={aiProviders} />
+
+      <div className="mt-6 border-t border-gray-100 pt-4">
         <div className="flex items-center gap-1.5 text-xs font-medium tracking-wide text-gray-400 uppercase">
           <Plug className="h-3.5 w-3.5" />
           自定义

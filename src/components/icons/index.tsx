@@ -11,6 +11,7 @@ import {
   LineChart,
   ChevronRight,
   ShieldCheck,
+  SlidersHorizontal,
 } from 'lucide-react'
 
 export const IconFree = Gift
@@ -25,3 +26,4 @@ export const IconBook = BookOpen
 export const IconChartLine = LineChart
 export const IconChevronRight = ChevronRight
 export const IconShieldCheck = ShieldCheck
+export const IconControl = SlidersHorizontal

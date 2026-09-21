@@ -2,9 +2,10 @@ import type { LucideIcon } from 'lucide-react'
 import { TextSelect, Globe, Captions, FileText, FileStack, GitCompare } from 'lucide-react'
 import selectionImg from '@/assets/img/划词翻译弹窗（带词典卡片）.png'
 import webPageImg from '@/assets/img/网页翻译.png'
-import videoImg from '@/assets/img/视频双语字幕.png'
+import videoImg from '@/assets/img/视频双语字幕-1.png'
 import pdfImg from '@/assets/img/PDF 双语阅读器.png'
-import compareImg from '@/assets/img/多引擎对比高亮.png'
+import documentImg from '@/assets/img/文档翻译.png'
+import compareImg from '@/assets/img/多引擎对比高亮-1.png'
 
 export interface OverviewTile {
   id: string
@@ -41,7 +42,7 @@ export const overviewTiles: OverviewTile[] = [
     description: 'YouTube、TED、Bilibili、Coursera 一键开启双语字幕。',
     icon: Captions,
     image: videoImg,
-    position: 'top',
+    position: 'center',
     href: '#video',
   },
   {
@@ -58,8 +59,8 @@ export const overviewTiles: OverviewTile[] = [
     title: '文档翻译',
     description: 'Markdown、TXT、SRT、HTML 同一套阅读器双语对照。',
     icon: FileStack,
-    image: pdfImg,
-    position: 'center 15%',
+    image: documentImg,
+    position: 'top',
     href: '#reading',
   },
   {

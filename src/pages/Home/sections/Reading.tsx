@@ -1,17 +1,20 @@
 import BrowserFrame from '@/components/mockups/BrowserFrame'
 import pdfImg from '@/assets/img/PDF 双语阅读器.png'
+import Reveal from '@/components/Reveal'
+import SectionGlow from '@/components/SectionGlow'
 
 export default function Reading() {
   return (
-    <section id="reading" className="bg-white px-6 py-24">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-2">
+    <section id="reading" className="relative overflow-hidden bg-[#F8FAFC] px-6 py-24">
+      <SectionGlow position="left" />
+      <Reveal className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-2">
         <div className="order-2 lg:order-1">
           <BrowserFrame url="pdf-reader · test4.pdf" noPadding>
             <div className="h-[260px] overflow-hidden sm:h-[360px]">
               <img
                 src={pdfImg}
                 alt="LingVa PDF 双语阅读器，左栏原文右栏译文对照"
-                className="w-full object-cover object-top"
+                className="h-full w-full object-cover object-top"
               />
             </div>
           </BrowserFrame>
@@ -31,7 +34,7 @@ export default function Reading() {
             同一套阅读器还支持 Markdown、TXT、SRT、HTML，格式与排版保持不变。
           </p>
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }

@@ -1,4 +1,5 @@
 import { IconKey, IconDoc, IconBook, IconChartLine } from '@/components/icons'
+import Reveal from '@/components/Reveal'
 
 const items = [
   { icon: IconKey, title: 'API 密钥', desc: '仅保存在本机 chrome.storage，不经过任何中间服务器。' },
@@ -9,8 +10,8 @@ const items = [
 
 export default function Trust() {
   return (
-    <section id="trust" className="bg-gray-50 px-6 py-24">
-      <div className="mx-auto max-w-6xl">
+    <section id="trust" className="bg-[#F8FAFC] px-6 py-24">
+      <Reveal className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-semibold text-gray-900 sm:text-4xl">你的翻译，只属于你</h2>
           <p className="mt-4 text-gray-500">
@@ -27,7 +28,7 @@ export default function Trust() {
             </div>
           ))}
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }

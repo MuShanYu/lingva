@@ -1,11 +1,13 @@
 import BrowserFrame from '@/components/mockups/BrowserFrame'
 import usage1Img from '@/assets/img/用量-1.png'
-import usage2Img from '@/assets/img/用量-2.png'
+import Reveal from '@/components/Reveal'
+import SectionGlow from '@/components/SectionGlow'
 
 export default function Usage() {
   return (
-    <section id="usage" className="bg-white px-6 py-24">
-      <div className="mx-auto max-w-6xl">
+    <section id="usage" className="relative overflow-hidden bg-white px-6 py-24">
+      <SectionGlow position="center" />
+      <Reveal className="relative mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-medium tracking-wide text-brand uppercase">
             Usage dashboard
@@ -21,14 +23,9 @@ export default function Usage() {
         <div className="mt-14">
           <BrowserFrame url="options.html#/usage" noPadding>
             <img src={usage1Img} alt="LingVa 用量与成本仪表盘：预算、今日消费、消费趋势与模型占比" className="w-full" />
-            <img
-              src={usage2Img}
-              alt="LingVa 用量与成本仪表盘：功能用量、引擎占比与服务商余额"
-              className="w-full border-t border-gray-100"
-            />
           </BrowserFrame>
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }

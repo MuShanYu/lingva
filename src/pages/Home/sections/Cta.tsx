@@ -6,6 +6,7 @@ import {
   IconNoTracking,
   IconByoa,
 } from '@/components/icons'
+import Reveal from '@/components/Reveal'
 
 const badges = [
   { icon: IconFree, label: '免费' },
@@ -20,7 +21,7 @@ export default function Cta() {
     <section className="relative overflow-hidden bg-[#0b0d12] px-6 py-24 text-center">
       <MountainBand />
 
-      <div className="relative mx-auto max-w-2xl">
+      <Reveal className="relative mx-auto max-w-2xl">
         <span className="text-xs font-medium tracking-wide text-brand uppercase">Get started</span>
         <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">现在开始，专注阅读</h2>
         <p className="mt-4 text-white/60">
@@ -45,7 +46,7 @@ export default function Cta() {
             </div>
           ))}
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }

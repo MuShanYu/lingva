@@ -1,9 +1,10 @@
 import { overviewTiles } from '@/data/overview'
+import Reveal from '@/components/Reveal'
 
 export default function Overview() {
   return (
     <section id="overview" className="bg-white px-6 py-24">
-      <div className="mx-auto max-w-6xl">
+      <Reveal className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-medium tracking-wide text-brand uppercase">
             One extension. Six ways to understand.
@@ -36,7 +37,7 @@ export default function Overview() {
             </a>
           ))}
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }

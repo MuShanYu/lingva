@@ -1,11 +1,14 @@
 import BrowserFrame from '@/components/mockups/BrowserFrame'
 import EngineList from '@/components/mockups/EngineList'
 import engineImg from '@/assets/img/设置页的引擎选择器.png'
+import Reveal from '@/components/Reveal'
+import SectionGlow from '@/components/SectionGlow'
 
 export default function Engines() {
   return (
-    <section id="engines" className="bg-gray-50 px-6 py-24">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-2">
+    <section id="engines" className="relative overflow-hidden bg-white px-6 py-24">
+      <SectionGlow position="right" />
+      <Reveal className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-2">
         <div>
           <span className="text-xs font-medium tracking-wide text-brand uppercase">
             Your text. Your model. Your choice.
@@ -28,12 +31,12 @@ export default function Engines() {
               <img
                 src={engineImg}
                 alt="LingVa 设置页的引擎与 AI 服务商选择器"
-                className="w-full object-cover object-top"
+                className="h-full w-full object-cover object-top"
               />
             </div>
           </BrowserFrame>
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }

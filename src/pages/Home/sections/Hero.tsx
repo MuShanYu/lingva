@@ -3,13 +3,20 @@ import SplitText from '@/components/react-bits/SplitText'
 import BlurText from '@/components/react-bits/BlurText'
 import BrowserFrame from '@/components/mockups/BrowserFrame'
 import wordPopupImg from '@/assets/img/划词翻译弹窗（带词典卡片）.png'
-import { IconShieldCheck, IconNoAds, IconLocalFirst, IconNoTracking } from '@/components/icons'
+import {
+  IconShieldCheck,
+  IconNoAds,
+  IconLocalFirst,
+  IconNoTracking,
+  IconControl,
+} from '@/components/icons'
 
 const badges = [
-  { icon: IconShieldCheck, label: '免费' },
+  { icon: IconShieldCheck, label: '完全免费' },
   { icon: IconNoAds, label: '无广告' },
   { icon: IconLocalFirst, label: '数据本地存储' },
   { icon: IconNoTracking, label: '隐私安全' },
+  { icon: IconControl, label: '完全自主控制' },
 ]
 
 export default function Hero() {
