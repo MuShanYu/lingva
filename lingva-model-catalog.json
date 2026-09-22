@@ -162,6 +162,38 @@
             "notes": "免费模型，配合新手代金券几乎零成本原型验证"
           },
           "description": "免费模型，适合原型验证，存在速率与上下文限制。"
+        },
+        {
+          "id": "glm-ocr",
+          "label": "GLM-OCR",
+          "status": "active",
+          "modalities": {
+            "input": [
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "inputConstraints": {
+            "image": {
+              "formats": [
+                "jpg",
+                "png"
+              ],
+              "maxSizeMB": 10
+            },
+            "pdf": {
+              "maxSizeMB": 50,
+              "maxPages": 100
+            }
+          },
+          "cost": {
+            "input": 0.03,
+            "output": 0.03
+          },
+          "description": "智谱开源轻量级 OCR 模型，0.9B 参数，专注复杂文档解析：手写体、复杂表格、公式、印章等场景表现突出，支持表格转 HTML、票据/卡证信息结构化提取为 JSON。"
         }
       ]
     },
