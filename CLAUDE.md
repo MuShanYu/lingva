@@ -25,7 +25,7 @@ npm run preview
 - `src/assets/svg/` — `simple-icons` 没收录的品牌 logo（Microsoft、Grok、智谱 GLM），用户提供的官方 SVG 素材
 - `src/components/mockups/` — 首页的辅助展示组件：`BrowserFrame`（浅色浏览器外框，包裹真实截图用）、`ScreenshotCard`（无外框截图卡片）、`ProcessSteps`（横向步骤条）、`EngineList`（引擎列表，品牌 logo 优先用 `simple-icons` 的官方色 SVG path，`simple-icons` 没收录的品牌直接用 `src/assets/svg/` 里的 SVG 素材，LingVa 自己的内置引擎用站点自身 favicon）、`PlatformList`（视频平台小标签，同样用 `simple-icons` 官方色）、`SettingsCardMock`（静态字幕设置卡片，无对应真实截图）、`MangaPanelMock`（漫画翻译面板的静态示意。漫画相关不放真实截图：截图里是商业漫画内容，有版权风险）、`MountainBand`（Cta 暗色带背景）。Usage 仪表盘那节已改回直接展示 `用量-1.png`/`用量-2.png` 两张真实截图（早期版本用过手绘 SVG 图表，现已废弃删除）
 - `src/components/icons/` — 图标集合，基于 `lucide-react` 按需引入并用语义化名字重新导出（`IconFree` `IconOpenSource` 等），GitHub 品牌图标 `IconGithub` 是手写 SVG（lucide 不含品牌 logo）
-- `src/pages/Privacy/Privacy.tsx` — Chrome Web Store 上架所需的隐私政策页，分「扩展本身」与「图片识别服务」两部分；后者依据扩展仓库的 `docs/LingVa 隐私政策.md` 草稿，服务端处理方式变化时两边一起改
+- `src/pages/Privacy/Privacy.tsx` — Chrome Web Store 上架所需的隐私政策页：要点速览表 + 12 条条款，覆盖扩展本身与官方图片识别服务。中英文各一份完整正文（`PrivacyZh.tsx` / `PrivacyEn.tsx`）；扩展或服务端处理方式变化时两份一起改。注意不要往 `public/` 放 `index.html`，会在构建时覆盖站点入口
 - `src/pages/Help/Help.tsx` — 帮助中心，按功能分组的常见问题
 - `src/components/layout/` — 全站通用的 `Header`、`Footer`
 - `src/i18n/` — 中英双语（zh / en，英文以中文为准翻译）。不引第三方 i18n 库：`LocaleProvider` 管当前语言（默认 en，用户手动切换后存 localStorage）并同步 `<html lang>`、title、description；`LocaleSwitch` 是 Header 右上角的切换按钮。各组件把文案就近写成 `const content = { zh: {...}, en: {...} }` 再用 `useContent(content)` 取，**改中文文案时必须同步改英文**。帮助页 FAQ 在 `src/pages/Help/faq.tsx`；隐私政策按语言各一份完整正文（`PrivacyZh.tsx` / `PrivacyEn.tsx`，共用 `parts.tsx` 排版组件）

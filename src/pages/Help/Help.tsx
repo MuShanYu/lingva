@@ -4,16 +4,21 @@ import { useLocale } from '@/i18n/context'
 import { faqGroups, type FaqItem } from './faq'
 
 const CONTACT_EMAIL = 'mushanyu66@proton.me'
+const ISSUES_URL = 'https://github.com/MuShanYu/lingva-image-server-pub/issues'
 
 const content = {
   zh: {
     title: '帮助中心',
     introBefore: '按功能分类整理的常见问题。找不到答案？欢迎发邮件到',
+    introOr: '，或在',
+    issueLink: 'GitHub 提交 Issue',
     introAfter: '。',
   },
   en: {
     title: 'Help center',
     introBefore: 'Frequently asked questions, organized by feature. Can’t find an answer? Email us at',
+    introOr: ', or',
+    issueLink: 'open an issue on GitHub',
     introAfter: '.',
   },
 }
@@ -53,6 +58,10 @@ export default function Help() {
         {t.introBefore}{' '}
         <a href={`mailto:${CONTACT_EMAIL}`} className="text-brand hover:underline">
           {CONTACT_EMAIL}
+        </a>
+        {t.introOr}{' '}
+        <a href={ISSUES_URL} target="_blank" rel="noreferrer" className="text-brand hover:underline">
+          {t.issueLink}
         </a>
         {t.introAfter}
       </p>
