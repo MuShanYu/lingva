@@ -7,25 +7,49 @@ import {
   IconByoa,
 } from '@/components/icons'
 import Reveal from '@/components/Reveal'
+import { useContent } from '@/i18n/context'
 
-const badges = [
-  { icon: IconFree, label: '免费' },
-  { icon: IconNoAds, label: '无广告' },
-  { icon: IconNoBackend, label: '无后端' },
-  { icon: IconNoTracking, label: '不追踪' },
-  { icon: IconByoa, label: '自带 API' },
-]
+const content = {
+  zh: {
+    title: '现在开始，专注阅读',
+    desc: '安装 LingVa，让翻译真正属于你。永久免费，不追踪，可自带 API。',
+    cta: '添加到 Chrome',
+    note: '免费 · 无广告 · 隐私安全',
+    badges: [
+      { icon: IconFree, label: '免费' },
+      { icon: IconNoAds, label: '无广告' },
+      { icon: IconNoBackend, label: '无后端' },
+      { icon: IconNoTracking, label: '不追踪' },
+      { icon: IconByoa, label: '自带 API' },
+    ],
+  },
+  en: {
+    title: 'Start now, stay focused on reading',
+    desc: 'Install LingVa and make translation truly yours. Free forever, no tracking, bring your own API.',
+    cta: 'Add to Chrome',
+    note: 'Free · No ads · Privacy first',
+    badges: [
+      { icon: IconFree, label: 'Free' },
+      { icon: IconNoAds, label: 'No ads' },
+      { icon: IconNoBackend, label: 'No backend' },
+      { icon: IconNoTracking, label: 'No tracking' },
+      { icon: IconByoa, label: 'Bring your own API' },
+    ],
+  },
+}
 
 export default function Cta() {
+  const t = useContent(content)
+
   return (
     <section className="relative overflow-hidden bg-[#0b0d12] px-6 py-24 text-center">
       <MountainBand />
 
       <Reveal className="relative mx-auto max-w-2xl">
         <span className="text-xs font-medium tracking-wide text-brand uppercase">Get started</span>
-        <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">现在开始，专注阅读</h2>
+        <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">{t.title}</h2>
         <p className="mt-4 text-white/60">
-          安装 LingVa，让翻译真正属于你。永久免费，不追踪，可自带 API。
+          {t.desc}
         </p>
 
         <div className="mt-8">
@@ -33,13 +57,13 @@ export default function Cta() {
             href="#"
             className="rounded-full bg-gradient-to-r from-brand to-accent-purple px-8 py-3 text-sm font-medium text-white shadow-lg shadow-brand/30 transition hover:opacity-90"
           >
-            添加到 Chrome
+            {t.cta}
           </a>
         </div>
-        <p className="mt-3 text-xs text-white/40">免费 · 无广告 · 隐私安全</p>
+        <p className="mt-3 text-xs text-white/40">{t.note}</p>
 
         <div className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-4">
-          {badges.map((badge) => (
+          {t.badges.map((badge) => (
             <div key={badge.label} className="flex items-center gap-2 text-xs text-white/50">
               <badge.icon className="h-4 w-4" />
               {badge.label}

@@ -1,7 +1,22 @@
 import { overviewTiles } from '@/data/overview'
 import Reveal from '@/components/Reveal'
+import { useLocale } from '@/i18n/context'
+
+const content = {
+  zh: {
+    title: '从网页到视频、PDF、文档与漫画，翻译需求一个扩展全覆盖',
+    newBadge: '新功能',
+  },
+  en: {
+    title: 'From web pages to videos, PDFs, documents and manga — one extension covers it all',
+    newBadge: 'New',
+  },
+}
 
 export default function Overview() {
+  const { locale } = useLocale()
+  const t = content[locale]
+
   return (
     <section id="overview" className="bg-white px-6 py-24">
       <Reveal className="mx-auto max-w-6xl">
@@ -10,7 +25,7 @@ export default function Overview() {
             One extension. Seven ways to understand.
           </span>
           <h2 className="mt-3 text-3xl font-semibold text-gray-900 sm:text-4xl">
-            从网页到视频、PDF、文档与漫画，翻译需求一个扩展全覆盖
+            {t.title}
           </h2>
         </div>
 
@@ -25,15 +40,15 @@ export default function Overview() {
                 <div className="h-36 overflow-hidden border-b border-gray-100 bg-gray-50">
                   <img
                     src={tile.image}
-                    alt={tile.title}
+                    alt={tile.title[locale]}
                     className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
                     style={{ objectPosition: tile.position }}
                   />
                 </div>
                 <div className="p-5">
                   <tile.icon className="h-5 w-5 text-brand" strokeWidth={1.75} />
-                  <h3 className="mt-3 text-sm font-medium text-gray-900">{tile.title}</h3>
-                  <p className="mt-2 text-xs leading-relaxed text-gray-500">{tile.description}</p>
+                  <h3 className="mt-3 text-sm font-medium text-gray-900">{tile.title[locale]}</h3>
+                  <p className="mt-2 text-xs leading-relaxed text-gray-500">{tile.description[locale]}</p>
                 </div>
               </a>
             ) : (
@@ -47,10 +62,10 @@ export default function Overview() {
                 </span>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="text-sm font-medium text-gray-900">{tile.title}</h3>
-                    <span className="rounded-full bg-brand/10 px-2 py-0.5 text-[11px] font-medium text-brand">新功能</span>
+                    <h3 className="text-sm font-medium text-gray-900">{tile.title[locale]}</h3>
+                    <span className="rounded-full bg-brand/10 px-2 py-0.5 text-[11px] font-medium text-brand">{t.newBadge}</span>
                   </div>
-                  <p className="mt-1.5 text-xs leading-relaxed text-gray-500">{tile.description}</p>
+                  <p className="mt-1.5 text-xs leading-relaxed text-gray-500">{tile.description[locale]}</p>
                 </div>
               </a>
             ),

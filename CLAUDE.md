@@ -28,6 +28,7 @@ npm run preview
 - `src/pages/Privacy/Privacy.tsx` — Chrome Web Store 上架所需的隐私政策页，分「扩展本身」与「图片识别服务」两部分；后者依据扩展仓库的 `docs/LingVa 隐私政策.md` 草稿，服务端处理方式变化时两边一起改
 - `src/pages/Help/Help.tsx` — 帮助中心，按功能分组的常见问题
 - `src/components/layout/` — 全站通用的 `Header`、`Footer`
+- `src/i18n/` — 中英双语（zh / en，英文以中文为准翻译）。不引第三方 i18n 库：`LocaleProvider` 管当前语言（默认 en，用户手动切换后存 localStorage）并同步 `<html lang>`、title、description；`LocaleSwitch` 是 Header 右上角的切换按钮。各组件把文案就近写成 `const content = { zh: {...}, en: {...} }` 再用 `useContent(content)` 取，**改中文文案时必须同步改英文**。帮助页 FAQ 在 `src/pages/Help/faq.tsx`；隐私政策按语言各一份完整正文（`PrivacyZh.tsx` / `PrivacyEn.tsx`，共用 `parts.tsx` 排版组件）
 - `src/components/react-bits/` — 从 [react-bits](https://reactbits.dev) 引入的动效组件，通过 `npx shadcn@latest add @react-bits/<Name>-TS-TW` 安装（见 README）。这些文件是第三方生成代码，不必套用仓库自身的代码规范，也不要手动大改，需要改动时优先重新生成
 
 ## 样式

@@ -4,6 +4,7 @@ import type { SimpleIcon } from 'simple-icons'
 import microsoftLogo from '@/assets/svg/microsoft-color.svg'
 import grokLogo from '@/assets/svg/grok.svg'
 import zhipuLogo from '@/assets/svg/zhipu.svg'
+import { useContent } from '@/i18n/context'
 
 interface EngineItem {
   name: string
@@ -12,8 +13,12 @@ interface EngineItem {
   isOwn?: boolean
 }
 
+const content = {
+  zh: { builtIn: '内置翻译', machine: '机器翻译', ai: 'AI 服务商', custom: '自定义', addEndpoint: '+ 添加 OpenAI 兼容端点' },
+  en: { builtIn: 'Built-in', machine: 'Machine translation', ai: 'AI providers', custom: 'Custom', addEndpoint: '+ Add OpenAI-compatible endpoint' },
+}
+
 const machineTranslation: EngineItem[] = [
-  { name: '内置翻译', isOwn: true },
   { name: 'DeepL', icon: siDeepl },
   { name: 'Google', icon: siGoogle },
   { name: 'Microsoft', logoSrc: microsoftLogo },
@@ -73,26 +78,28 @@ function EngineRow({ items }: { items: EngineItem[] }) {
 }
 
 export default function EngineList() {
+  const t = useContent(content)
+
   return (
     <div>
       <div className="flex items-center gap-1.5 text-xs font-medium tracking-wide text-gray-400 uppercase">
         <Languages className="h-3.5 w-3.5" />
-        机器翻译
+        {t.machine}
       </div>
-      <EngineRow items={machineTranslation} />
+      <EngineRow items={[{ name: t.builtIn, isOwn: true }, ...machineTranslation]} />
 
       <div className="mt-6 flex items-center gap-1.5 text-xs font-medium tracking-wide text-gray-400 uppercase">
         <Sparkles className="h-3.5 w-3.5" />
-        AI 服务商
+        {t.ai}
       </div>
       <EngineRow items={aiProviders} />
 
       <div className="mt-6 border-t border-gray-100 pt-4">
         <div className="flex items-center gap-1.5 text-xs font-medium tracking-wide text-gray-400 uppercase">
           <Plug className="h-3.5 w-3.5" />
-          自定义
+          {t.custom}
         </div>
-        <p className="mt-3 text-sm text-brand">+ 添加 OpenAI 兼容端点</p>
+        <p className="mt-3 text-sm text-brand">{t.addEndpoint}</p>
       </div>
     </div>
   )
