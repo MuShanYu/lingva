@@ -6,7 +6,7 @@
     <script type="text/javascript">
       // GitHub Pages 不支持前端路由的直接刷新/深链，这里把路径编码进 query
       // 转发回 index.html，由 index.html 里的脚本解码还原，交给 react-router 接管。
-      var pathSegmentsToKeep = 1 // 仓库名 /lingva/ 本身要保留
+      var pathSegmentsToKeep = 0 // 自定义域名部署在根路径，无需保留仓库名前缀
       var l = window.location
       l.replace(
         l.protocol +
