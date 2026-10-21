@@ -5,7 +5,7 @@ import SectionGlow from '@/components/SectionGlow'
 
 export default function Usage() {
   return (
-    <section id="usage" className="relative overflow-hidden bg-white px-6 py-24">
+    <section id="usage" className="relative overflow-hidden bg-[#F8FAFC] px-6 py-24">
       <SectionGlow position="center" />
       <Reveal className="relative mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">

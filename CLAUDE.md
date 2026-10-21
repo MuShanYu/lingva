@@ -19,13 +19,14 @@ npm run preview
 ## 架构
 
 - `src/App.tsx` — `react-router-dom` 路由入口，包一层全局 `Header`/`Footer`
-- `src/pages/Home/Home.tsx` — 首页，由 `sections/` 下的 `Hero` `Overview` `Learning` `Engines` `Compare` `Video` `Reading` `Usage` `Trust` `Cta` 拼装（叙事顺序：Hero → 六合一总览 → 生词学习闭环 → 引擎选择 → 多引擎对比 → 视频字幕 → PDF/文档阅读 → 用量仪表盘 → 隐私 → 深色 CTA 带）
-- `src/data/overview.ts` — Overview 六宫格总览的文案 + 缩略图数据
+- `src/pages/Home/Home.tsx` — 首页，由 `sections/` 下的 `Hero` `Overview` `Learning` `Engines` `Compare` `Video` `Reading` `Manga` `Usage` `Trust` `Cta` 拼装（叙事顺序：Hero → 七合一总览 → 生词学习闭环 → 引擎选择 → 多引擎对比 → 视频字幕 → PDF/文档阅读 → 漫画翻译 → 用量仪表盘 → 隐私 → 深色 CTA 带）。各节背景白色与 `#F8FAFC` 交替
+- `src/data/overview.ts` — Overview 总览的文案 + 缩略图数据；没有 `image` 的条目（漫画翻译）整行展示、不放图
 - `src/assets/img/` — 首页用的真实产品截图（中文命名，如 `划词翻译弹窗（带词典卡片）.png`），各 section 优先直接使用这些真实截图，而不是手绘示意图
 - `src/assets/svg/` — `simple-icons` 没收录的品牌 logo（Microsoft、Grok、智谱 GLM），用户提供的官方 SVG 素材
-- `src/components/mockups/` — 首页的辅助展示组件：`BrowserFrame`（浅色浏览器外框，包裹真实截图用）、`ScreenshotCard`（无外框截图卡片）、`ProcessSteps`（横向步骤条）、`EngineList`（引擎列表，品牌 logo 优先用 `simple-icons` 的官方色 SVG path，`simple-icons` 没收录的品牌直接用 `src/assets/svg/` 里的 SVG 素材，LingVa 自己的内置引擎用站点自身 favicon）、`PlatformList`（视频平台小标签，同样用 `simple-icons` 官方色）、`SettingsCardMock`（静态字幕设置卡片，无对应真实截图）、`MountainBand`（Cta 暗色带背景）。Usage 仪表盘那节已改回直接展示 `用量-1.png`/`用量-2.png` 两张真实截图（早期版本用过手绘 SVG 图表，现已废弃删除）
+- `src/components/mockups/` — 首页的辅助展示组件：`BrowserFrame`（浅色浏览器外框，包裹真实截图用）、`ScreenshotCard`（无外框截图卡片）、`ProcessSteps`（横向步骤条）、`EngineList`（引擎列表，品牌 logo 优先用 `simple-icons` 的官方色 SVG path，`simple-icons` 没收录的品牌直接用 `src/assets/svg/` 里的 SVG 素材，LingVa 自己的内置引擎用站点自身 favicon）、`PlatformList`（视频平台小标签，同样用 `simple-icons` 官方色）、`SettingsCardMock`（静态字幕设置卡片，无对应真实截图）、`MangaPanelMock`（漫画翻译面板的静态示意。漫画相关不放真实截图：截图里是商业漫画内容，有版权风险）、`MountainBand`（Cta 暗色带背景）。Usage 仪表盘那节已改回直接展示 `用量-1.png`/`用量-2.png` 两张真实截图（早期版本用过手绘 SVG 图表，现已废弃删除）
 - `src/components/icons/` — 图标集合，基于 `lucide-react` 按需引入并用语义化名字重新导出（`IconFree` `IconOpenSource` 等），GitHub 品牌图标 `IconGithub` 是手写 SVG（lucide 不含品牌 logo）
-- `src/pages/Privacy/Privacy.tsx` — Chrome Web Store 上架所需的隐私政策页
+- `src/pages/Privacy/Privacy.tsx` — Chrome Web Store 上架所需的隐私政策页，分「扩展本身」与「图片识别服务」两部分；后者依据扩展仓库的 `docs/LingVa 隐私政策.md` 草稿，服务端处理方式变化时两边一起改
+- `src/pages/Help/Help.tsx` — 帮助中心，按功能分组的常见问题
 - `src/components/layout/` — 全站通用的 `Header`、`Footer`
 - `src/components/react-bits/` — 从 [react-bits](https://reactbits.dev) 引入的动效组件，通过 `npx shadcn@latest add @react-bits/<Name>-TS-TW` 安装（见 README）。这些文件是第三方生成代码，不必套用仓库自身的代码规范，也不要手动大改，需要改动时优先重新生成
 

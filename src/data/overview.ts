@@ -1,5 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
-import { TextSelect, Globe, Captions, FileText, FileStack, GitCompare } from 'lucide-react'
+import { TextSelect, Globe, Captions, FileText, FileStack, GitCompare, BookOpen } from 'lucide-react'
 import selectionImg from '@/assets/img/划词翻译弹窗（带词典卡片）.png'
 import webPageImg from '@/assets/img/网页翻译.png'
 import videoImg from '@/assets/img/视频双语字幕-1.png'
@@ -12,8 +12,9 @@ export interface OverviewTile {
   title: string
   description: string
   icon: LucideIcon
-  image: string
-  position: string
+  // 没有真实截图的功能（漫画翻译：截图里是商业漫画）不放图，整行展示
+  image?: string
+  position?: string
   href: string
 }
 
@@ -71,5 +72,12 @@ export const overviewTiles: OverviewTile[] = [
     image: compareImg,
     position: 'center 22%',
     href: '#compare',
+  },
+  {
+    id: 'manga',
+    title: '漫画翻译',
+    description: '在 pixiv、カドコミ、少年ジャンプ+ 等网站上整部作品一起翻译，译文直接排在每一页上。',
+    icon: BookOpen,
+    href: '#manga',
   },
 ]

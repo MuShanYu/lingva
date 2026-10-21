@@ -12,6 +12,7 @@ import {
   ChevronRight,
   ShieldCheck,
   SlidersHorizontal,
+  Image,
 } from 'lucide-react'
 
 export const IconFree = Gift
@@ -27,3 +28,4 @@ export const IconChartLine = LineChart
 export const IconChevronRight = ChevronRight
 export const IconShieldCheck = ShieldCheck
 export const IconControl = SlidersHorizontal
+export const IconImage = Image

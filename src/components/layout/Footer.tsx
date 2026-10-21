@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
+import { HashLink } from '@/components/layout/HashLink'
 
 const navItems = [
   { href: '#overview', label: '功能' },
   { href: '#engines', label: '引擎' },
-  { href: '#', label: '文档' },
+  { href: '/help', label: '帮助' },
   { href: '/privacy', label: '隐私' },
 ]
 
@@ -21,9 +22,9 @@ export default function Footer() {
 
         <nav className="flex flex-wrap items-center justify-center gap-6">
           {navItems.map((item) => (
-            <a key={item.label} href={item.href} className="transition hover:text-white">
+            <HashLink key={item.label} href={item.href} className="transition hover:text-white">
               {item.label}
-            </a>
+            </HashLink>
           ))}
         </nav>
       </div>

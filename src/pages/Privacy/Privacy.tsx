@@ -1,11 +1,17 @@
-const items = [
+import type { ReactNode } from 'react'
+
+const SERVER_REPO = 'https://github.com/MuShanYu/lingva-image-server-pub'
+const CONTACT_EMAIL = 'mushanyu66@proton.me'
+
+// 第一部分：扩展本身在浏览器里怎么处理数据
+const extensionItems = [
   {
     title: 'API 密钥',
     body: '只保存在你自己的浏览器本地（chrome.storage），不会发送给 LingVa 或任何第三方。',
   },
   {
-    title: '要翻译的内容',
-    body: '由浏览器直接发送给你自己选择的翻译引擎，LingVa 没有自建服务器，不会经手、也看不到这些内容。',
+    title: '要翻译的文字',
+    body: '由浏览器直接发送给你自己选择的翻译引擎，不经过 LingVa 的服务器，LingVa 看不到这些内容。',
   },
   {
     title: '翻译历史与生词本',
@@ -15,24 +21,260 @@ const items = [
     title: '用量与成本统计',
     body: '仅用于本地「用量与成本」页面的展示，同样只存在本机，不会上传，也不用于其他任何用途。',
   },
+  {
+    title: '漫画图片',
+    body: '使用漫画翻译时，页面上的图片会发送到图片识别服务识别文字，详见下方「图片识别服务」。识别结果和译文缓存在本机，最多 500 MB。',
+  },
 ]
+
+// 第二部分：图片识别服务保存哪些信息
+const serviceTable = [
+  ['上传的图片', '不保存', '识别文字、生成擦字底图', '只在处理期间存在，处理完立即丢弃'],
+  ['识别出的文字、擦字底图', '不保存', '返回给你的扩展', '不在服务器上保留'],
+  ['IP 地址', '不保存原始地址', '防滥用（限制新设备登记、封禁滥用来源）', '只保存不可逆的哈希值，见 3.2'],
+  ['设备标识（安装 ID）', '保存', '分配额度、关联赞助', '服务运营期间，可申请删除'],
+  ['每日用量', '保存', '计算每日额度、统计', '逐日记录保留 90 天，之后只保留累计页数和最后使用日期'],
+  ['赞助订单', '保存', '兑换赞助额度、记账', '服务运营期间'],
+  ['账号、姓名、手机号、邮箱', '不收集', '—', '—'],
+]
+
+function H2({ children }: { children: ReactNode }) {
+  return <h2 className="mt-14 text-xl font-semibold text-gray-900">{children}</h2>
+}
+
+function H3({ children }: { children: ReactNode }) {
+  return <h3 className="mt-8 text-base font-medium text-gray-900">{children}</h3>
+}
+
+function H4({ children }: { children: ReactNode }) {
+  return <h4 className="mt-6 text-sm font-medium text-gray-900">{children}</h4>
+}
+
+function P({ children }: { children: ReactNode }) {
+  return <p className="mt-3 text-sm leading-relaxed text-gray-500">{children}</p>
+}
+
+function List({ items }: { items: ReactNode[] }) {
+  return (
+    <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-gray-500">
+      {items.map((item, i) => (
+        <li key={i}>{item}</li>
+      ))}
+    </ul>
+  )
+}
+
+function B({ children }: { children: ReactNode }) {
+  return <strong className="font-medium text-gray-700">{children}</strong>
+}
+
+function ExtLink({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <a href={href} target="_blank" rel="noreferrer" className="text-brand hover:underline">
+      {children}
+    </a>
+  )
+}
 
 export default function Privacy() {
   return (
     <section className="mx-auto max-w-3xl px-6 pb-24 pt-32 text-gray-700">
       <h1 className="text-3xl font-semibold text-gray-900">隐私政策</h1>
+      <p className="mt-3 text-xs text-gray-400">生效日期：2026 年 10 月 20 日 · 最近更新：2026 年 10 月 20 日</p>
       <p className="mt-6 max-w-xl text-sm leading-relaxed text-gray-500">
-        LingVa 没有自己的服务器，所有数据都留在你自己的电脑上。以下是每一类数据的具体去向：
+        LingVa 的数据默认都留在你自己的电脑上。唯一会经过 LingVa 服务器的是漫画翻译时的图片：服务器
+        <B>不保存你上传的图片，不保存你的 IP 地址，不需要你注册账号，也不使用任何统计或广告工具</B>。
       </p>
 
-      <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
-        {items.map((item) => (
+      <H2>一、LingVa 扩展</H2>
+      <P>扩展在你的浏览器里运行，各类数据的去向如下：</P>
+      <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        {extensionItems.map((item) => (
           <div key={item.title} className="rounded-2xl border border-gray-200 p-6">
-            <h2 className="text-base font-medium text-gray-900">{item.title}</h2>
+            <h3 className="text-base font-medium text-gray-900">{item.title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-gray-500">{item.body}</p>
           </div>
         ))}
       </div>
+
+      <H2>二、图片识别服务</H2>
+      <P>
+        简单来说：为了分配每日额度和防止滥用，我们会记录一个随机生成的设备标识，以及它每天使用了多少页；除此之外不保存任何能识别你的信息。
+      </P>
+      <div className="mt-6 overflow-x-auto rounded-2xl border border-gray-200">
+        <table className="w-full min-w-[560px] text-left text-sm">
+          <thead className="bg-gray-50 text-xs text-gray-500">
+            <tr>
+              <th className="px-4 py-3 font-medium">信息</th>
+              <th className="px-4 py-3 font-medium">是否保存</th>
+              <th className="px-4 py-3 font-medium">用途</th>
+              <th className="px-4 py-3 font-medium">保存多久</th>
+            </tr>
+          </thead>
+          <tbody className="text-gray-600">
+            {serviceTable.map((row) => (
+              <tr key={row[0]} className="border-t border-gray-100">
+                {row.map((cell, i) => (
+                  <td key={i} className={`px-4 py-3 align-top ${i === 0 ? 'text-gray-900' : ''}`}>
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <H3>1. 适用范围</H3>
+      <P>
+        本部分适用于 MuShanYu（以下称"我们"）运营的 LingVa 官方图片识别服务（ocr.mushanyu.xyz）。LingVa
+        扩展在你阅读漫画时，会把页面上的图片发送到这个服务识别文字，再由扩展完成翻译和排版。
+      </P>
+      <P>以下情况不适用本部分：</P>
+      <List
+        items={[
+          <>
+            <B>自行部署的服务</B>：如果你在扩展里填写的是自己或他人部署的服务地址（使用开源代码{' '}
+            <ExtLink href={SERVER_REPO}>lingva-image-server-pub</ExtLink>），数据由该服务的部署者处理，与我们无关。
+          </>,
+          <>
+            <B>扩展在浏览器中的处理</B>：见上方「一、LingVa 扩展」。
+          </>,
+          <>
+            <B>赞助平台</B>：你在爱发电或 Ko-fi 上付款时，支付信息由这些平台按各自的隐私政策处理，我们看不到你的支付账户信息。
+          </>,
+        ]}
+      />
+
+      <H3>2. 我们不收集的信息</H3>
+      <P>
+        使用本服务<B>不需要注册账号</B>。我们不收集你的姓名、手机号、邮箱、身份证件等身份信息。服务不对普通用户设置
+        Cookie，也不使用任何第三方统计、广告或用户画像工具。我们看不到你在浏览哪个网站，只会收到扩展发来的图片本身。
+      </P>
+
+      <H3>3. 我们处理的信息</H3>
+      <H4>3.1 你上传的图片</H4>
+      <P>扩展把漫画页面的图片发送给我们，用于检测文字位置、识别文字和生成去掉原文的底图。识别结果直接返回给你的扩展。</P>
+      <List
+        items={[
+          <>
+            图片<B>不会被保存</B>，也不会用于训练模型或任何其他用途。
+          </>,
+          '处理时图片在服务器内存中，较大的图片（超过 1 MB）会临时写入服务器的临时文件，请求结束后立即删除。',
+          '识别出的文字和生成的底图只返回给你，不在服务器上保留，也不写入日志。',
+          '图片会从接收请求的服务器（阿里云北京）经云服务商的内部网络转发到负责识别的服务器（阿里云上海），不经过公网。',
+        ]}
+      />
+
+      <H4>3.2 IP 地址</H4>
+      <P>
+        你的 IP 地址会随请求到达服务器。我们<B>不保存原始 IP 地址</B>
+        ，只用一个仅保存在服务器配置中的密钥，把它计算成不可逆的哈希值（HMAC-SHA256），用于：
+      </P>
+      <List
+        items={[
+          '限制同一网络每天新登记的设备数量，防止批量刷取额度。这个计数只保留当天的。',
+          '封禁持续滥用服务的网络（只有被封禁时才会长期保存该网络的哈希值）。',
+          '管理员查看最近的请求，用于排查故障和发现滥用。这些记录只保存在服务器内存中，最多 5000 条，服务重启后清空。',
+        ]}
+      />
+      <P>计算哈希用的密钥不和数据库存放在一起，因此即使数据库泄露，也无法从哈希值还原出 IP 地址。服务器的访问日志不记录 IP 地址。</P>
+
+      <H4>3.3 设备标识与匿名凭证</H4>
+      <P>
+        扩展首次使用时会随机生成一个<B>安装 ID</B>
+        （一串随机字符，不含任何设备或个人信息），并用它向我们申请一个匿名凭证。凭证有效期 24 小时，到期后由扩展自动更新。
+      </P>
+      <P>我们保存安装 ID 的登记时间，以及它是否因滥用被停用。安装 ID 无法对应到具体的个人；卸载重装扩展后会生成新的安装 ID。</P>
+
+      <H4>3.4 每日用量</H4>
+      <P>为了执行每日免费额度，我们按安装 ID 记录每天使用的页数。逐日记录保留 90 天，更早的记录会合并成累计页数和最后使用日期，然后删除。</P>
+
+      <H4>3.5 请求记录</H4>
+      <P>
+        为了排查故障，服务器内存中保留最近的请求概况：时间、IP 哈希值、安装 ID、额度档位、处理结果和错误类型、耗时、图片尺寸和识别出的文字块数量。
+        <B>不包含图片和文字内容</B>。最多保存 5000 条，服务重启后清空。服务器日志只记录处理耗时和数量类的统计，同样不含图片、文字内容、IP
+        地址或文件名，日志文件大小有上限，旧日志会被自动覆盖。
+      </P>
+
+      <H4>3.6 赞助信息</H4>
+      <P>如果你通过爱发电或 Ko-fi 赞助，并在扩展里输入订单号兑换赞助额度，我们会保存：</P>
+      <List
+        items={[
+          '赞助平台、订单号、金额、币种、对应的赞助天数和时间；',
+          <>
+            付款人标识的不可逆哈希值（爱发电为用户 ID，Ko-fi 为付款邮箱），用于把同一位赞助者的多笔订单合并计算；
+            <B>不保存原始用户 ID 或邮箱</B>；
+          </>,
+          '这笔赞助绑定了哪些安装 ID。',
+        ]}
+      />
+      <P>为了确认爱发电订单的真实性，我们会用订单号向爱发电开放接口查询订单状态。Ko-fi 回调里附带的付款人姓名、留言等内容不会被保存。</P>
+
+      <H3>4. 我们如何使用这些信息</H3>
+      <P>
+        上述信息只用于：提供图片识别服务；分配和执行每日额度；兑换和计算赞助额度；防止滥用、保障服务稳定；统计服务的总体使用量和经费情况。我们不会把这些信息用于广告、用户画像，也不会出售给任何人。
+      </P>
+
+      <H3>5. 共享与第三方</H3>
+      <List
+        items={[
+          <>
+            <B>云服务商</B>：服务部署在阿里云的服务器上，数据存储在这些服务器中。
+          </>,
+          <>
+            <B>爱发电</B>：仅在核验订单时，以订单号查询订单状态。
+          </>,
+          <>
+            <B>法律要求</B>
+            ：仅在法律法规要求或有权机关依法要求时，提供我们实际持有的信息。由于我们不保存图片和原始 IP 地址，也就无法提供这些信息。
+          </>,
+        ]}
+      />
+      <P>除以上情况外，我们不会与任何第三方共享你的信息。</P>
+
+      <H3>6. 存储地点</H3>
+      <P>
+        服务器位于<B>中国大陆</B>
+        （阿里云北京、上海）。如果你在中国大陆以外使用本服务，你上传的图片会传输到中国大陆处理，处理完即丢弃。
+      </P>
+
+      <H3>7. 安全措施</H3>
+      <List
+        items={[
+          '扩展与服务之间全程使用 HTTPS 加密传输。',
+          'IP 地址和付款人标识只以哈希形式保存，计算哈希的密钥与数据库分开存放。',
+          '匿名凭证由服务端签名，签名密钥定期轮换。',
+          '管理后台需要密码登录，并限制登录失败的次数。',
+        ]}
+      />
+
+      <H3>8. 你的权利</H3>
+      <P>
+        由于我们不保存可以直接识别你身份的信息，我们无法主动找到"你的数据"。如果你希望查询或删除与某个安装 ID
+        关联的记录（登记信息、用量、赞助绑定），请通过第 11 条的方式联系我们，并提供该安装 ID（在扩展设置页「漫画识别服务」中可以查看和复制）。我们核实后会在 15 个工作日内处理。
+      </P>
+      <P>请注意：删除赞助绑定后，该设备将不再享受赞助额度。你也可以直接卸载扩展，旧的安装 ID 将不再被使用，它的逐日用量会在 90 天后自动删除。</P>
+
+      <H3>9. 未成年人</H3>
+      <P>本服务不针对未成年人，也不收集任何能识别年龄或身份的信息。未成年人赞助本服务前，应征得监护人同意。</P>
+
+      <H3>10. 政策变更</H3>
+      <P>
+        如果我们改变了处理信息的方式，会更新本政策并修改顶部的"最近更新"日期。涉及收集新的信息或改变用途等重要变更时，我们会在扩展或项目主页上提前告知。
+      </P>
+
+      <H3>11. 联系我们</H3>
+      <P>
+        对本政策有任何疑问，或需要行使第 8 条中的权利，请发邮件到{' '}
+        <a href={`mailto:${CONTACT_EMAIL}`} className="text-brand hover:underline">
+          {CONTACT_EMAIL}
+        </a>
+        。
+      </P>
+      <P>
+        本政策依据服务端开源代码的实际行为编写，你可以在 <ExtLink href={SERVER_REPO}>GitHub</ExtLink> 上查看图片识别服务的源代码。
+      </P>
     </section>
   )
 }

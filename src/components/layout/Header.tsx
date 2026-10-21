@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
+import { HashLink } from '@/components/layout/HashLink'
 
 const navItems = [
   { href: '#overview', label: '功能' },
   { href: '#engines', label: '引擎' },
-  { href: '#', label: '文档' },
+  { href: '/help', label: '帮助' },
   { href: '/privacy', label: '隐私' },
 ]
 
@@ -18,19 +19,19 @@ export default function Header() {
 
         <nav className="hidden items-center gap-8 text-sm text-gray-600 sm:flex">
           {navItems.map((item) => (
-            <a key={item.label} href={item.href} className="transition hover:text-gray-900">
+            <HashLink key={item.label} href={item.href} className="transition hover:text-gray-900">
               {item.label}
-            </a>
+            </HashLink>
           ))}
         </nav>
 
         <div className="flex items-center gap-4">
-          <a
+          <HashLink
             href="#download"
             className="rounded-full bg-brand px-4 py-2 text-sm font-medium text-white transition hover:bg-brand-dark"
           >
             添加到 Chrome
-          </a>
+          </HashLink>
         </div>
       </div>
     </header>

@@ -47,7 +47,7 @@ export default function Hero() {
           </h1>
 
           <BlurText
-            text="LingVa 是一款为阅读而生的 Chrome 翻译扩展。划词、网页、视频字幕、PDF 与文档，一处配置，随处翻译。"
+            text="LingVa 是一款为阅读而生的 Chrome 翻译扩展。划词、网页、视频字幕、PDF 与文档、漫画，一处配置，随处翻译。"
             className="mt-6 max-w-lg text-base text-gray-500 sm:text-lg"
             animateBy="words"
           />
