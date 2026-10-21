@@ -1,5 +1,6 @@
 import { siPixiv } from 'simple-icons'
-import MangaPanelMock from '@/components/mockups/MangaPanelMock'
+import mangaImg from '@/assets/img/漫画翻译.png'
+import ScreenshotCard from '@/components/mockups/ScreenshotCard'
 import Reveal from '@/components/Reveal'
 import SectionGlow from '@/components/SectionGlow'
 import { useContent } from '@/i18n/context'
@@ -22,6 +23,7 @@ const content = {
       { title: '进度一眼看清', desc: '面板显示整部作品进度、当前页附近的逐页状态和失败页，可暂停、继续、重新翻译本页。' },
       { title: '出错不打断阅读', desc: '单页失败只在这一页提示并可重试；服务繁忙时整部作品自动等待重试，恢复后从中断处继续。' },
     ],
+    imageAlt: '在漫画网站上翻译漫画：译文直接排进气泡，右侧是漫画翻译进度面板',
     errorTitle: '识别失败，请重试',
     retry: '重试',
     serviceBefore:
@@ -44,6 +46,7 @@ const content = {
       { title: 'Progress at a glance', desc: 'The panel shows overall progress, per-page status around the current page and failed pages. Pause, resume, or retranslate the current page.' },
       { title: 'Errors don’t break your reading', desc: 'A failed page shows a notice on that page only and can be retried. When the service is busy, the whole work waits and retries automatically, then resumes where it left off.' },
     ],
+    imageAlt: 'Translating manga on a manga site: translations typeset into the bubbles, with the manga translation progress panel on the right',
     errorTitle: 'Recognition failed, please retry',
     retry: 'Retry',
     serviceBefore:
@@ -86,7 +89,7 @@ export default function Manga() {
 
         <div className="mt-14 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
           <div className="flex flex-col items-center gap-5">
-            <MangaPanelMock />
+            <ScreenshotCard src={mangaImg} alt={t.imageAlt} />
             {/* 单页失败时，页面右上角就地展开的小卡片 */}
             <div className="flex w-full max-w-[320px] items-center gap-3 rounded-lg border border-gray-200 bg-white px-3 py-2 shadow-lg shadow-gray-200/60">
               <div className="min-w-0 flex-1">
