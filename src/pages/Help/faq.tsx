@@ -4,6 +4,7 @@ import { Rocket, Globe, Captions, TextSelect, BookOpen } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { IconBook, IconByoa, IconDoc, IconShieldCheck } from '@/components/icons'
 import type { Localized } from '@/i18n/context'
+import { CONTACT_EMAIL, ISSUES_URL } from '@/pages/Privacy/parts'
 
 export interface FaqItem {
   q: string
@@ -171,14 +172,46 @@ const zh: FaqGroup[] = [
         q: '我的 API 密钥和翻译内容会被 LingVa 看到吗？',
         a: (
           <>
-            不会。密钥只存在本机 chrome.storage，翻译请求由浏览器直接发给你自己配置的引擎，不经过 LingVa 的服务器。唯一会发给 LingVa 服务器的是漫画翻译时的图片，服务器不保存图片，也不保存 IP 地址。
+            不会。API 密钥只保存在本机浏览器，只随请求发给对应的翻译服务商；要翻译的文字由浏览器直接发给你选择的翻译服务，LingVa 没有中转服务器。只有漫画与图片翻译会把图片发到 LingVa 的图片识别服务。
             完整说明见<Link to="/privacy" className="text-brand hover:underline">隐私政策</Link>。
           </>
         ),
       },
       {
+        q: '哪些数据保存在我的浏览器里？',
+        a: '设置与偏好、各引擎的 API Key 和接口地址、翻译历史、生词本（包括单词的原文语境、来源网址和复习进度）、用量与费用统计，以及漫画识别结果与译文的缓存，都保存在浏览器的 IndexedDB 和 chrome.storage.local 中，不会上传。历史、统计和缓存可以在扩展里随时清空。',
+      },
+      {
+        q: '除了翻译服务，扩展还会联网发送什么？',
+        a: '查询单个单词时，会把这个单词发给公开词典接口获取音标、释义和例句；扩展还会定期下载公开的模型列表和价格目录，这些请求不含任何个人信息或翻译内容。另外，使用 AI 引擎翻译时，前后相邻的文字（漫画中为相邻页的原文）会作为上下文一并发给你选择的服务商，让译文更连贯。',
+      },
+      {
+        q: '漫画图片发到哪里？会被保存吗？',
+        a: '使用官方识别服务时，图片发到 LingVa 的识别服务器（位于中国大陆，阿里云北京、上海），只用于识别文字和生成擦字底图，处理完立即丢弃，不保存，也不用于训练模型。服务器不保存原始 IP 地址，只保存不可逆的哈希值用于防滥用。如果不希望图片传到中国大陆，可以改用自部署的识别服务，或不使用漫画与图片翻译。',
+      },
+      {
+        q: '官方识别服务会记录我的哪些信息？',
+        a: '只记录一个随机生成的安装 ID（不含任何设备或个人信息）和它每天识别的页数，用于分配每日额度；逐日记录保留 90 天，之后只保留累计页数和最后使用日期。赞助时会保存订单信息，付款人标识只保存不可逆的哈希值。不需要注册账号，不收集姓名、手机号、邮箱或浏览记录。',
+      },
+      {
+        q: '怎么删除识别服务上与我有关的记录？',
+        a: (
+          <>
+            发邮件到{' '}
+            <a href={`mailto:${CONTACT_EMAIL}`} className="text-brand hover:underline">
+              {CONTACT_EMAIL}
+            </a>
+            ，或在{' '}
+            <a href={ISSUES_URL} target="_blank" rel="noreferrer" className="text-brand hover:underline">
+              GitHub 提交 Issue
+            </a>
+            ，并提供对应的安装 ID 或赞助订单号，核实后会在 15 个工作日内处理（Issue 是公开的，请不要填写无关的个人信息）。删除赞助绑定后，该设备不再享有赞助额度。也可以直接卸载扩展，旧的安装 ID 不再使用，其逐日用量会在 90 天后自动删除。
+          </>
+        ),
+      },
+      {
         q: '卸载扩展会发生什么？',
-        a: '翻译历史、生词本、用量统计都保存在本机浏览器的 IndexedDB 中，卸载扩展或清除浏览器数据会一并清除，目前不支持跨设备同步。',
+        a: '保存在浏览器本地的设置、API Key、翻译历史、生词本、用量统计和漫画缓存会全部删除，清除浏览器数据也一样，目前不支持跨设备同步。重新安装后会生成新的安装 ID。',
       },
     ],
   },
@@ -338,14 +371,46 @@ const en: FaqGroup[] = [
         q: 'Can LingVa see my API keys and the text I translate?',
         a: (
           <>
-            No. Keys are stored only in your local chrome.storage, and translation requests go from your browser directly to the engine you configured, never through LingVa’s servers. The only thing sent to LingVa’s servers is images during manga translation, and the server stores neither images nor IP addresses.
+            No. API keys are stored only in your browser and sent only to the matching translation provider. The text you translate goes straight from your browser to the translation service you chose — LingVa runs no proxy. Only manga and image translation sends images to LingVa’s image recognition service.
             {' '}For full details, see the <Link to="/privacy" className="text-brand hover:underline">privacy policy</Link>.
           </>
         ),
       },
       {
+        q: 'What data is stored in my browser?',
+        a: 'Settings and preferences, API keys and endpoint addresses, translation history, your vocabulary notebook (including each word’s original context, source URL and review progress), usage and cost statistics, and cached manga recognition results and translations are all stored in your browser’s IndexedDB and chrome.storage.local, and never uploaded. You can clear history, statistics and caches in the extension at any time.',
+      },
+      {
+        q: 'Besides translation services, what else does the extension send over the network?',
+        a: 'When you look up a single word, that word is sent to a public dictionary API for pronunciation, definitions and examples. The extension also periodically downloads public model lists and price catalogs; these requests contain no personal information or translated content. With AI engines, neighboring text (for manga, the original text of neighboring pages) is sent to your chosen provider as context for more consistent translations.',
+      },
+      {
+        q: 'Where do manga images go? Are they stored?',
+        a: 'With the official recognition service, images are sent to LingVa’s recognition servers (in mainland China, Alibaba Cloud Beijing and Shanghai), used only to recognize text and produce a text-free version, and discarded right afterwards. They are never stored or used to train models. The server does not store raw IP addresses — only an irreversible hash for abuse prevention. If you’d rather your images not go to mainland China, use a self-hosted recognition server or don’t use manga and image translation.',
+      },
+      {
+        q: 'What does the official recognition service record about me?',
+        a: 'Only a randomly generated installation ID (containing no device or personal information) and how many pages it processes each day, used to apply the daily quota. Daily records are kept for 90 days, then reduced to a total page count and last-used date. If you sponsor, order details are stored, with the payer identifier kept only as an irreversible hash. No account is needed, and no name, phone number, email or browsing history is collected.',
+      },
+      {
+        q: 'How do I delete records about me on the recognition service?',
+        a: (
+          <>
+            Email{' '}
+            <a href={`mailto:${CONTACT_EMAIL}`} className="text-brand hover:underline">
+              {CONTACT_EMAIL}
+            </a>{' '}
+            or{' '}
+            <a href={ISSUES_URL} target="_blank" rel="noreferrer" className="text-brand hover:underline">
+              open an issue on GitHub
+            </a>{' '}
+            with the installation ID or sponsorship order number, and we’ll act on verified requests within 15 business days (issues are public, so don’t include unrelated personal information). Removing a sponsorship link ends the sponsor quota for that device. You can also simply uninstall the extension: the old installation ID is no longer used and its daily usage records are deleted automatically after 90 days.
+          </>
+        ),
+      },
+      {
         q: 'What happens if I uninstall the extension?',
-        a: 'Translation history, vocabulary and usage stats are all stored in your browser’s IndexedDB. Uninstalling the extension or clearing browser data deletes them too; cross-device sync isn’t supported yet.',
+        a: 'Settings, API keys, translation history, vocabulary, usage stats and manga caches stored in your browser are all deleted, as they are when you clear browser data. Cross-device sync isn’t supported yet. Reinstalling creates a new installation ID.',
       },
     ],
   },

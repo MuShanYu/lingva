@@ -1,10 +1,8 @@
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { useLocale } from '@/i18n/context'
+import { CONTACT_EMAIL, ISSUES_URL } from '@/pages/Privacy/parts'
 import { faqGroups, type FaqItem } from './faq'
-
-const CONTACT_EMAIL = 'mushanyu66@proton.me'
-const ISSUES_URL = 'https://github.com/MuShanYu/lingva-image-server-pub/issues'
 
 const content = {
   zh: {
