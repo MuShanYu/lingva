@@ -18,6 +18,7 @@ npm run preview
 
 ## 架构
 
+- `index.html` — 站点入口，`<head>` 里有 Google Analytics（gtag，`G-S9Q4656GG4`），隐私政策第 1 条已写明官网使用 GA；`public/404.html` 只负责跳转，不要加统计代码，否则会重复计数
 - `src/App.tsx` — `react-router-dom` 路由入口，包一层全局 `Header`/`Footer`
 - `src/pages/Home/Home.tsx` — 首页，由 `sections/` 下的 `Hero` `Overview` `Learning` `Engines` `Compare` `Video` `Reading` `Manga` `Usage` `Trust` `Cta` 拼装（叙事顺序：Hero → 七合一总览 → 生词学习闭环 → 引擎选择 → 多引擎对比 → 视频字幕 → PDF/文档阅读 → 漫画翻译 → 用量仪表盘 → 隐私 → 深色 CTA 带）。各节背景白色与 `#F8FAFC` 交替
 - `src/data/overview.ts` — Overview 总览的文案 + 缩略图数据；没有 `image` 的条目（漫画翻译）整行展示、不放图

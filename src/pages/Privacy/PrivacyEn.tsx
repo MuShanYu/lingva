@@ -38,7 +38,7 @@ export default function PrivacyEn() {
           your browser to the translation provider you choose. It never passes through us.
         </B>{' '}
         Only manga and image translation sends images to LingVa’s image recognition service. We do not store those images, we do not
-        store your IP address, you need no account, and we use no analytics or advertising tools.
+        store your IP address, you need no account, and the extension and recognition service use no analytics or advertising tools.
       </Lead>
       <SummaryTable headers={['Data', 'Sent to us?', 'Notes']} rows={summaryRows} />
 
@@ -62,6 +62,11 @@ export default function PrivacyEn() {
           <>
             <B>Sponsorship platforms</B>: payments on Afdian or Ko-fi are processed by those platforms. We never see your payment account
             details.
+          </>,
+          <>
+            <B>This website</B> (<Code>lingva.mushanyu.xyz</Code>) uses Google Analytics to measure anonymous traffic (such as page
+            views, referrers, approximate region and device type), handled by Google under its own privacy policy. This applies only to
+            the website, not the extension; the extension contains no analytics code.
           </>,
         ]}
       />
