@@ -24,8 +24,6 @@ const content = {
       { title: '出错不打断阅读', desc: '单页失败只在这一页提示并可重试；服务繁忙时整部作品自动等待重试，恢复后从中断处继续。' },
     ],
     imageAlt: '在漫画网站上翻译漫画：译文直接排进气泡，右侧是漫画翻译进度面板',
-    errorTitle: '识别失败，请重试',
-    retry: '重试',
     serviceBefore:
       '图片识别由 LingVa 官方识别服务完成：免注册，每天有免费额度，赞助可获得更多额度；识别过的页面会缓存在本机，再次阅读不消耗额度。也可以部署',
     serviceLink: '开源的识别服务端',
@@ -47,8 +45,6 @@ const content = {
       { title: 'Errors don’t break your reading', desc: 'A failed page shows a notice on that page only and can be retried. When the service is busy, the whole work waits and retries automatically, then resumes where it left off.' },
     ],
     imageAlt: 'Translating manga on a manga site: translations typeset into the bubbles, with the manga translation progress panel on the right',
-    errorTitle: 'Recognition failed, please retry',
-    retry: 'Retry',
     serviceBefore:
       'Image recognition is handled by the official LingVa recognition service: no sign-up, a free daily quota, and more quota for sponsors. Recognized pages are cached locally, so rereading costs no quota. You can also deploy the ',
     serviceLink: 'open-source recognition server',
@@ -88,17 +84,7 @@ export default function Manga() {
         </div>
 
         <div className="mt-14 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
-          <div className="flex flex-col items-center gap-5">
-            <ScreenshotCard src={mangaImg} alt={t.imageAlt} />
-            {/* 单页失败时，页面右上角就地展开的小卡片 */}
-            <div className="flex w-full max-w-[320px] items-center gap-3 rounded-lg border border-gray-200 bg-white px-3 py-2 shadow-lg shadow-gray-200/60">
-              <div className="min-w-0 flex-1">
-                <p className="text-sm text-gray-900">{t.errorTitle}</p>
-                <p className="text-xs text-gray-400">inference_failed · 500</p>
-              </div>
-              <span className="rounded-md bg-brand px-3 py-1 text-sm text-white">{t.retry}</span>
-            </div>
-          </div>
+          <ScreenshotCard src={mangaImg} alt={t.imageAlt} />
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {t.points.map((point) => (
