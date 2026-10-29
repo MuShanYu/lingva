@@ -15,12 +15,12 @@ export default function Home() {
     <>
       <Hero />
       <Overview />
-      <Learning />
-      <Engines />
-      <Compare />
-      <Video />
-      <Reading />
       <Manga />
+      <Reading />
+      <Video />
+      <Learning />
+      <Compare />
+      <Engines />
       <Usage />
       <Trust />
       <Cta />

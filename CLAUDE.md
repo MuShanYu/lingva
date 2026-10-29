@@ -20,11 +20,11 @@ npm run preview
 
 - `index.html` — 站点入口，`<head>` 里有 Google Analytics（gtag，`G-S9Q4656GG4`），隐私政策第 1 条已写明官网使用 GA；`public/404.html` 只负责跳转，不要加统计代码，否则会重复计数
 - `src/App.tsx` — `react-router-dom` 路由入口，包一层全局 `Header`/`Footer`
-- `src/pages/Home/Home.tsx` — 首页，由 `sections/` 下的 `Hero` `Overview` `Learning` `Engines` `Compare` `Video` `Reading` `Manga` `Usage` `Trust` `Cta` 拼装（叙事顺序：Hero → 七合一总览 → 生词学习闭环 → 引擎选择 → 多引擎对比 → 视频字幕 → PDF/文档阅读 → 漫画翻译 → 用量仪表盘 → 隐私 → 深色 CTA 带）。各节背景白色与 `#F8FAFC` 交替
+- `src/pages/Home/Home.tsx` — 首页，由 `sections/` 下的 `Hero` `Overview` `Manga` `Reading` `Video` `Learning` `Compare` `Engines` `Usage` `Trust` `Cta` 拼装（叙事顺序：Hero → 七合一总览 → 漫画翻译 → PDF/文档阅读 → 视频字幕 → 生词学习闭环 → 多引擎对比 → 引擎选择 → 用量仪表盘 → 隐私 → 深色 CTA 带）。各节背景白色与 `#F8FAFC` 交替
 - `src/data/overview.ts` — Overview 总览的文案 + 缩略图数据；没有 `image` 的条目（漫画翻译）整行展示、不放图
-- `src/assets/img/` — 首页用的真实产品截图（中文命名，如 `划词翻译弹窗（带词典卡片）.png`），各 section 优先直接使用这些真实截图，而不是手绘示意图
+- `src/assets/img/` — 首页用的真实产品截图（中文命名，如 `划词翻译弹窗（带词典卡片）.png`），各 section 优先直接使用这些真实截图，而不是手绘示意图。各块图片的尺寸、比例和截图要求见 `doc/首页图片规范.md`，换图前先看
 - `src/assets/svg/` — `simple-icons` 没收录的品牌 logo（Microsoft、Grok、智谱 GLM），用户提供的官方 SVG 素材
-- `src/components/mockups/` — 首页的辅助展示组件：`BrowserFrame`（浅色浏览器外框，包裹真实截图用）、`ScreenshotCard`（无外框截图卡片）、`ProcessSteps`（横向步骤条）、`EngineList`（引擎列表，品牌 logo 优先用 `simple-icons` 的官方色 SVG path，`simple-icons` 没收录的品牌直接用 `src/assets/svg/` 里的 SVG 素材，LingVa 自己的内置引擎用站点自身 favicon）、`PlatformList`（视频平台小标签，同样用 `simple-icons` 官方色）、`SettingsCardMock`（静态字幕设置卡片，无对应真实截图）、`MountainBand`（Cta 暗色带背景）。漫画翻译那节用的是真实截图 `漫画翻译.png`（早期手绘的 `MangaPanelMock` 已删除）。Usage 仪表盘那节已改回直接展示 `用量-1.png`/`用量-2.png` 两张真实截图（早期版本用过手绘 SVG 图表，现已废弃删除）
+- `src/components/mockups/` — 首页的辅助展示组件：`ScreenshotCard`（截图卡片，首页所有真实截图都用它直接展示，不再套浏览器外框；早期的 `BrowserFrame` 已删除）、`ProcessSteps`（横向步骤条）、`EngineList`（引擎列表，品牌 logo 优先用 `simple-icons` 的官方色 SVG path，`simple-icons` 没收录的品牌直接用 `src/assets/svg/` 里的 SVG 素材，LingVa 自己的内置引擎用站点自身 favicon）、`PlatformList`（视频平台小标签，同样用 `simple-icons` 官方色）、`SettingsCardMock`（静态字幕设置卡片，无对应真实截图）、`MountainBand`（Cta 暗色带背景）。漫画翻译那节用的是真实截图 `漫画翻译.png`（早期手绘的 `MangaPanelMock` 已删除）。Usage 仪表盘那节直接展示真实截图 `用量-1.png`（早期版本用过手绘 SVG 图表，现已废弃删除）
 - `src/components/icons/` — 图标集合，基于 `lucide-react` 按需引入并用语义化名字重新导出（`IconFree` `IconOpenSource` 等），GitHub 品牌图标 `IconGithub` 是手写 SVG（lucide 不含品牌 logo）
 - `src/pages/Privacy/Privacy.tsx` — Chrome Web Store 上架所需的隐私政策页：要点速览表 + 12 条条款，覆盖扩展本身与官方图片识别服务。中英文各一份完整正文（`PrivacyZh.tsx` / `PrivacyEn.tsx`）；扩展或服务端处理方式变化时两份一起改。注意不要往 `public/` 放 `index.html`，会在构建时覆盖站点入口
 - `src/pages/Help/Help.tsx` — 帮助中心，按功能分组的常见问题

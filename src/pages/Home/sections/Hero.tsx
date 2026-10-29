@@ -1,7 +1,7 @@
 import Aurora from '@/components/react-bits/Aurora'
 import SplitText from '@/components/react-bits/SplitText'
 import BlurText from '@/components/react-bits/BlurText'
-import BrowserFrame from '@/components/mockups/BrowserFrame'
+import ScreenshotCard from '@/components/mockups/ScreenshotCard'
 import wordPopupImg from '@/assets/img/划词翻译弹窗（带词典卡片）.png'
 import {
   IconShieldCheck,
@@ -107,9 +107,7 @@ export default function Hero() {
         </div>
 
         <div>
-          <BrowserFrame url="wikipedia.org/wiki/Artificial_intelligence" noPadding>
-            <img src={wordPopupImg} alt={t.imgAlt} className="w-full" />
-          </BrowserFrame>
+          <ScreenshotCard src={wordPopupImg} alt={t.imgAlt} />
         </div>
       </div>
     </section>

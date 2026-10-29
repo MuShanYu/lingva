@@ -39,9 +39,9 @@ export default function Learning() {
   const t = useContent(content)
 
   return (
-    <section id="learning" className="relative overflow-hidden bg-[#F8FAFC] px-6 py-24">
+    <section id="learning" className="relative overflow-hidden bg-white px-6 py-24">
       <SectionGlow position="right" />
-      <Reveal className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-2">
+      <Reveal className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
         <div>
           <span className="text-xs font-medium tracking-wide text-brand uppercase">
             Build your vocabulary
@@ -58,13 +58,7 @@ export default function Learning() {
           </div>
         </div>
 
-        <div className="flex justify-center">
-          <ScreenshotCard
-            src={vocabListImg}
-            alt={t.imgAlt}
-            className="max-w-xs"
-          />
-        </div>
+        <ScreenshotCard src={vocabListImg} alt={t.imgAlt} />
       </Reveal>
     </section>
   )

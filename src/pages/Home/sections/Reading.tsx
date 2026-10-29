@@ -1,4 +1,4 @@
-import BrowserFrame from '@/components/mockups/BrowserFrame'
+import ScreenshotCard from '@/components/mockups/ScreenshotCard'
 import pdfImg from '@/assets/img/PDF 双语阅读器.png'
 import Reveal from '@/components/Reveal'
 import SectionGlow from '@/components/SectionGlow'
@@ -23,22 +23,10 @@ export default function Reading() {
   const t = useContent(content)
 
   return (
-    <section id="reading" className="relative overflow-hidden bg-[#F8FAFC] px-6 py-24">
-      <SectionGlow position="left" />
+    <section id="reading" className="relative overflow-hidden bg-white px-6 py-24">
+      <SectionGlow position="right" />
       <Reveal className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-2">
-        <div className="order-2 lg:order-1">
-          <BrowserFrame url="pdf-reader · test4.pdf" noPadding>
-            <div className="h-[260px] overflow-hidden sm:h-[360px]">
-              <img
-                src={pdfImg}
-                alt={t.imgAlt}
-                className="h-full w-full object-cover object-top"
-              />
-            </div>
-          </BrowserFrame>
-        </div>
-
-        <div className="order-1 lg:order-2">
+        <div>
           <span className="text-xs font-medium tracking-wide text-brand uppercase">
             PDF &amp; document
           </span>
@@ -52,6 +40,8 @@ export default function Reading() {
             {t.note}
           </p>
         </div>
+
+        <ScreenshotCard src={pdfImg} alt={t.imgAlt} />
       </Reveal>
     </section>
   )

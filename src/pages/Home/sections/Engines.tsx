@@ -1,4 +1,4 @@
-import BrowserFrame from '@/components/mockups/BrowserFrame'
+import ScreenshotCard from '@/components/mockups/ScreenshotCard'
 import EngineList from '@/components/mockups/EngineList'
 import engineImg from '@/assets/img/设置页的引擎选择器.png'
 import Reveal from '@/components/Reveal'
@@ -42,15 +42,7 @@ export default function Engines() {
         </div>
 
         <div>
-          <BrowserFrame url="options.html#/engines" noPadding>
-            <div className="h-[280px] overflow-hidden sm:h-[420px]">
-              <img
-                src={engineImg}
-                alt={t.imgAlt}
-                className="h-full w-full object-cover object-top"
-              />
-            </div>
-          </BrowserFrame>
+          <ScreenshotCard src={engineImg} alt={t.imgAlt} />
         </div>
       </Reveal>
     </section>

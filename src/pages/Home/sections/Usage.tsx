@@ -1,4 +1,4 @@
-import BrowserFrame from '@/components/mockups/BrowserFrame'
+import ScreenshotCard from '@/components/mockups/ScreenshotCard'
 import usage1Img from '@/assets/img/用量-1.png'
 import Reveal from '@/components/Reveal'
 import SectionGlow from '@/components/SectionGlow'
@@ -22,24 +22,22 @@ export default function Usage() {
 
   return (
     <section id="usage" className="relative overflow-hidden bg-[#F8FAFC] px-6 py-24">
-      <SectionGlow position="center" />
-      <Reveal className="relative mx-auto max-w-6xl">
-        <div className="mx-auto max-w-2xl text-center">
+      <SectionGlow position="left" />
+      <Reveal className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-2">
+        <div className="order-2 lg:order-1">
+          <ScreenshotCard src={usage1Img} alt={t.imgAlt} />
+        </div>
+
+        <div className="order-1 lg:order-2">
           <span className="text-xs font-medium tracking-wide text-brand uppercase">
             Usage dashboard
           </span>
           <h2 className="mt-3 text-3xl font-semibold text-gray-900 sm:text-4xl">
             {t.title}
           </h2>
-          <p className="mt-4 text-gray-500">
+          <p className="mt-4 max-w-lg text-gray-500">
             {t.desc}
           </p>
-        </div>
-
-        <div className="mt-14">
-          <BrowserFrame url="options.html#/usage" noPadding>
-            <img src={usage1Img} alt={t.imgAlt} className="w-full" />
-          </BrowserFrame>
         </div>
       </Reveal>
     </section>

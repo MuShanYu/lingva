@@ -57,7 +57,7 @@ export default function Manga() {
   const t = useContent(content)
 
   return (
-    <section id="manga" className="relative overflow-hidden bg-white px-6 py-24">
+    <section id="manga" className="relative overflow-hidden bg-[#F8FAFC] px-6 py-24">
       <SectionGlow position="right" />
       <Reveal className="relative mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">

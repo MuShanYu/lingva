@@ -33,9 +33,13 @@ export default function Compare() {
 
   return (
     <section id="compare" className="relative overflow-hidden bg-[#F8FAFC] px-6 py-24">
-      <SectionGlow position="right" />
-      <Reveal className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-2">
-        <div>
+      <SectionGlow position="left" />
+      <Reveal className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
+        <div className="order-2 lg:order-1">
+          <ScreenshotCard src={compareImg} alt={t.imgAlt} />
+        </div>
+
+        <div className="order-1 lg:order-2">
           <span className="text-xs font-medium tracking-wide text-brand uppercase">
             Multi-model comparison
           </span>
@@ -58,14 +62,6 @@ export default function Compare() {
               </span>
             ))}
           </div>
-        </div>
-
-        <div className="flex justify-center lg:justify-end">
-          <ScreenshotCard
-            src={compareImg}
-            alt={t.imgAlt}
-            className="max-w-sm"
-          />
         </div>
       </Reveal>
     </section>
