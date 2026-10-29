@@ -5,7 +5,7 @@ import { useContent } from '@/i18n/context'
 const content = {
   zh: {
     title: '你的翻译，只属于你',
-    desc: '本地优先不是一句口号，而是每一类数据的默认去向。唯一会经过 LingVa 服务器的是漫画图片，且只用于识别、不保存。',
+    desc: '本地优先不是一句口号，而是每一类数据的默认去向。漫画图片识别会使用单独的识别服务，且只用于识别、不保存。',
     items: [
       { icon: IconKey, title: 'API 密钥', desc: '仅保存在本机 chrome.storage，不经过任何中间服务器。' },
       { icon: IconDoc, title: '翻译内容', desc: '由浏览器直接发送给你自己配置的翻译引擎，LingVa 不设代理、不经手内容。' },
@@ -16,7 +16,7 @@ const content = {
   },
   en: {
     title: 'Your translations belong to you',
-    desc: 'Local-first isn’t a slogan — it’s where every kind of data goes by default. The only thing that passes through LingVa’s servers is manga images, used for recognition only and never stored.',
+    desc: 'Local-first isn’t a slogan — it’s where every kind of data goes by default. Manga image recognition uses a separate recognition service, used for recognition only and never stored.',
     items: [
       { icon: IconKey, title: 'API keys', desc: 'Stored only in your local chrome.storage, never routed through any intermediate server.' },
       { icon: IconDoc, title: 'Translated text', desc: 'Sent by your browser directly to the engine you configured. LingVa runs no proxy and never touches your content.' },
@@ -31,7 +31,7 @@ export default function Trust() {
   const t = useContent(content)
 
   return (
-    <section id="trust" className="bg-white px-6 py-24">
+    <section id="trust" className="bg-white px-6 py-16 sm:py-20">
       <Reveal className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-semibold text-gray-900 sm:text-4xl">{t.title}</h2>
@@ -40,7 +40,7 @@ export default function Trust() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {t.items.map((item) => (
             <div key={item.title} className="rounded-2xl border border-gray-200 bg-white p-6">
               <item.icon className="h-6 w-6 text-brand" />
