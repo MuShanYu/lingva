@@ -8,7 +8,7 @@ import { useContent } from '@/i18n/context'
 const content = {
   zh: {
     title: '一句原文，看清不同模型怎么翻',
-    desc: '同时调用多个翻译引擎，自动标出与基准译文的差异。用词、增译、漏译，一眼看清。',
+    desc: '依次获取多个翻译引擎的结果，自动标出与基准译文的差异。用词、增译、漏译，一眼看清。',
     highlights: [
       { icon: GitCompare, label: '多引擎同时对比' },
       { icon: Highlighter, label: '差异自动高亮' },
@@ -18,7 +18,7 @@ const content = {
   },
   en: {
     title: 'One sentence, see how each model translates it',
-    desc: 'Call multiple translation engines at once and automatically highlight differences from the baseline translation. Word choice, additions and omissions — all visible at a glance.',
+    desc: 'Compare results from several translation engines and automatically highlight differences from the baseline translation. Word choice, additions and omissions — all visible at a glance.',
     highlights: [
       { icon: GitCompare, label: 'Compare engines side by side' },
       { icon: Highlighter, label: 'Differences highlighted' },
@@ -32,7 +32,7 @@ export default function Compare() {
   const t = useContent(content)
 
   return (
-    <section id="compare" className="relative overflow-hidden bg-[#F8FAFC] px-6 py-24">
+    <section id="compare" className="relative overflow-hidden bg-[#F8FAFC] px-6 py-16 sm:py-20">
       <SectionGlow position="left" />
       <Reveal className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
         <div className="order-2 lg:order-1">
