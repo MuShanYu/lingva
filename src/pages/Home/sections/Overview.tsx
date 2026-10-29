@@ -4,11 +4,11 @@ import { useLocale } from '@/i18n/context'
 
 const content = {
   zh: {
-    title: '从网页到视频、PDF、文档与漫画，翻译需求一个扩展全覆盖',
+    title: '从一句话到一整部作品，阅读场景都能接上翻译',
     newBadge: '新功能',
   },
   en: {
-    title: 'From web pages to videos, PDFs, documents and manga — one extension covers it all',
+    title: 'From a single word to an entire manga, translate as you read',
     newBadge: 'New',
   },
 }
@@ -18,18 +18,18 @@ export default function Overview() {
   const t = content[locale]
 
   return (
-    <section id="overview" className="bg-white px-6 py-24">
+    <section id="overview" className="bg-white px-6 py-16 sm:py-20">
       <Reveal className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-4xl text-center">
           <span className="text-xs font-medium tracking-wide text-brand uppercase">
-            One extension. Seven ways to understand.
+            One extension · Seven reading scenarios
           </span>
           <h2 className="mt-3 text-3xl font-semibold text-balance text-gray-900 sm:text-4xl">
             {t.title}
           </h2>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {overviewTiles.map((tile) =>
             tile.image ? (
               <a
@@ -37,7 +37,7 @@ export default function Overview() {
                 href={tile.href}
                 className="group overflow-hidden rounded-2xl border border-gray-200 bg-white transition hover:border-brand/30 hover:shadow-xl hover:shadow-gray-200/60"
               >
-                <div className="h-36 overflow-hidden border-b border-gray-100 bg-gray-50">
+                <div className="h-40 overflow-hidden border-b border-gray-100 bg-gray-50">
                   <img
                     src={tile.image}
                     alt={tile.title[locale]}
