@@ -6,15 +6,15 @@ import { useContent } from '@/i18n/context'
 
 const content = {
   zh: {
-    title: 'PDF 与文档，原版式对照着读',
-    desc: '译文直接替换在原文所在的位置，字体、颜色与版式保持不变，和原文逐页对照；旋转文字和竖排的中日文也能原位替换。扫描页一键识别后同样原位替换；多栏、表格较多的复杂页面可以开启版面增强，分段更准确。',
-    note: '翻译好的 PDF 可以用浏览器「另存为 PDF」导出。同一套阅读器还支持 Markdown、TXT、SRT、HTML，格式与排版保持不变，并可按原格式导出。',
+    title: 'PDF、TXT、Markdown、SRT、HTML，集中翻译与阅读',
+    desc: 'PDF 支持原文与译文双页对照；扫描件可进行文字识别，复杂页面可选择版面分析。TXT、Markdown、SRT、HTML 则采用适合文本阅读的双语对照方式。不同格式，共用语言与翻译引擎设置。',
+    note: '无需在多个工具之间切换：保留各格式适合的阅读方式，并提供原文与译文切换。',
     imgAlt: 'LingVa PDF 双语阅读器，左栏原文右栏译文对照',
   },
   en: {
-    title: 'Read PDFs and documents in their original layout',
-    desc: 'Translations replace the original text right where it sits, keeping its fonts, colors and layout, page by page next to the original. Rotated text and vertical Chinese and Japanese are replaced in place too. Scanned pages are recognized with one click and replaced the same way, and complex pages with columns or many tables can use layout enhancement for more accurate paragraphs.',
-    note: 'Translated PDFs can be saved with the browser’s “Save as PDF”. The same reader also supports Markdown, TXT, SRT and HTML, with formatting and layout preserved and export in the original format.',
+    title: 'Translate PDFs, TXT, Markdown, SRT and HTML in one reader',
+    desc: 'Read PDFs side by side with their translations, recognize scanned pages and optionally analyze complex layouts. TXT, Markdown, SRT and HTML use a text-friendly bilingual view. Every format shares language and translation engine settings.',
+    note: 'Keep the reading experience suited to each file type, and switch between original and translated text without changing tools.',
     imgAlt: 'LingVa bilingual PDF reader with the original on the left and the translation on the right',
   },
 }
