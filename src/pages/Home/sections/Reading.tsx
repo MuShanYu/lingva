@@ -23,7 +23,7 @@ export default function Reading() {
   const t = useContent(content)
 
   return (
-    <section id="reading" className="relative overflow-hidden bg-white px-6 py-24">
+    <section id="reading" className="relative overflow-hidden bg-white px-6 py-16 sm:py-20">
       <SectionGlow position="right" />
       <Reveal className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-2">
         <div>
