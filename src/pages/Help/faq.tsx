@@ -104,12 +104,20 @@ const zh: FaqGroup[] = [
         a: 'PDF、Markdown、TXT、SRT 字幕、HTML，五种格式共用同一个阅读器和翻译队列，顶部统一选择引擎与目标语言。',
       },
       {
-        q: 'PDF 翻译后感觉版式「乱了」？',
-        a: '左栏用原版式还原原文，右栏是脱离原版式、重新排版展示的译文，两栏各自独立滚动、互不联动，属于设计如此，不是 bug。',
+        q: 'PDF 译文分段不对，多栏内容串在了一起？',
+        a: '阅读器在本地按文字的位置还原段落，多栏、表格或图文混排较多的复杂页面可能分错。可以打开工具栏的「增强版面分析」，或在单页上点「增强版面」，把页面交给识别服务分析版面后再分段。第一次使用前会先征求你的同意；官方服务另有每天的版面分析额度，用完后自动改回本地分段，次日恢复。',
+      },
+      {
+        q: '为什么有些译文的字号比原文小？',
+        a: '译文放在原文所在的位置，放不下时会自动缩小字号，原文旁边有空白时会借用空白。从中文译成其他语言时篇幅通常会变长，字号就会小一些。鼠标悬停在译文上可以看到原文，被截断的译文悬停时还能看到全文。',
       },
       {
         q: '扫描版 PDF 能翻译吗？',
-        a: '不能。PDF 阅读器只翻译能提取出文字的 PDF，不做 OCR 识别，遇到整页无可提取文字的扫描件会直接提示跳过，不会误报翻译成功。',
+        a: '可以。阅读器会自动找出扫描页（包括带隐藏文字层、但文字仍在图片里的扫描件），点击「识别扫描页」后，这些页面会发到识别服务识别文字，再原位替换成译文。扫描页消耗漫画/文档识别额度，识别结果缓存在本地，再次打开不会重复识别。照片、插图这类纯图片页保持原样显示。',
+      },
+      {
+        q: '能导出翻译后的 PDF 吗？',
+        a: '可以。PDF 通过浏览器的「另存为 PDF」导出，导出前会把每一页都加载、翻译并替换好；Markdown、TXT、SRT、HTML 会按原格式重建后直接下载。',
       },
     ],
   },
@@ -172,26 +180,26 @@ const zh: FaqGroup[] = [
         q: '我的 API 密钥和翻译内容会被 LingVa 看到吗？',
         a: (
           <>
-            不会。API 密钥只保存在本机浏览器，只随请求发给对应的翻译服务商；要翻译的文字由浏览器直接发给你选择的翻译服务，LingVa 没有中转服务器。只有漫画与图片翻译会把图片发到 LingVa 的图片识别服务。
+            不会。API 密钥只保存在本机浏览器，只随请求发给对应的翻译服务商；要翻译的文字由浏览器直接发给你选择的翻译服务，LingVa 没有中转服务器。只有漫画与图片翻译，以及 PDF 的扫描页识别和版面增强，会把图片发到 LingVa 的识别服务（版面增强还会附带该页文字的位置和内容）。
             完整说明见<Link to="/privacy" className="text-brand hover:underline">隐私政策</Link>。
           </>
         ),
       },
       {
         q: '哪些数据保存在我的浏览器里？',
-        a: '设置与偏好、各引擎的 API Key 和接口地址、翻译历史、生词本（包括单词的原文语境、来源网址和复习进度）、用量与费用统计，以及漫画识别结果与译文的缓存，都保存在浏览器的 IndexedDB 和 chrome.storage.local 中，不会上传。历史、统计和缓存可以在扩展里随时清空。',
+        a: '设置与偏好、各引擎的 API Key 和接口地址、翻译历史、生词本（包括单词的原文语境、来源网址和复习进度）、用量与费用统计，以及漫画识别结果与译文、PDF 扫描页识别和版面分析结果的缓存，都保存在浏览器的 IndexedDB 和 chrome.storage.local 中，不会上传。历史、统计和缓存可以在扩展里随时清空。',
       },
       {
         q: '除了翻译服务，扩展还会联网发送什么？',
         a: '查询单个单词时，会把这个单词发给公开词典接口获取音标、释义和例句；扩展还会定期下载公开的模型列表和价格目录，这些请求不含任何个人信息或翻译内容。另外，使用 AI 引擎翻译时，前后相邻的文字（漫画中为相邻页的原文）会作为上下文一并发给你选择的服务商，让译文更连贯。',
       },
       {
-        q: '漫画图片发到哪里？会被保存吗？',
-        a: '使用官方识别服务时，图片发到 LingVa 的识别服务器（位于中国大陆，阿里云北京、上海），只用于识别文字和生成擦字底图，处理完立即丢弃，不保存，也不用于训练模型。服务器不保存原始 IP 地址，只保存不可逆的哈希值用于防滥用。如果不希望图片传到中国大陆，可以改用自部署的识别服务，或不使用漫画与图片翻译。',
+        q: '漫画图片和 PDF 页面发到哪里？会被保存吗？',
+        a: '使用官方识别服务时，漫画图片、PDF 扫描页以及开启版面增强后的 PDF 页面（连同该页文字的位置和内容）发到 LingVa 的识别服务器（位于中国大陆，阿里云北京、上海），只用于识别文字、分析版面和生成擦字底图，处理完立即丢弃，不保存，也不用于训练模型。PDF 文件本身不会上传。服务器不保存原始 IP 地址，只保存不可逆的哈希值用于防滥用。如果不希望这些内容传到中国大陆，可以改用自部署的识别服务，或不使用漫画与图片翻译、PDF 扫描页识别和版面增强。',
       },
       {
         q: '官方识别服务会记录我的哪些信息？',
-        a: '只记录一个随机生成的安装 ID（不含任何设备或个人信息）和它每天识别的页数，用于分配每日额度；逐日记录保留 90 天，之后只保留累计页数和最后使用日期。赞助时会保存订单信息，付款人标识只保存不可逆的哈希值。不需要注册账号，不收集姓名、手机号、邮箱或浏览记录。',
+        a: '只记录一个随机生成的安装 ID（不含任何设备或个人信息）和它每天识别的页数、版面分析的页数，用于分配每日额度；逐日记录保留 90 天，之后只保留累计识别页数和最后使用日期。赞助时会保存订单信息，付款人标识只保存不可逆的哈希值。不需要注册账号，不收集姓名、手机号、邮箱或浏览记录。',
       },
       {
         q: '怎么删除识别服务上与我有关的记录？',
@@ -303,12 +311,20 @@ const en: FaqGroup[] = [
         a: 'PDF, Markdown, TXT, SRT subtitles and HTML. All five share the same reader and translation queue, with the engine and target language chosen at the top.',
       },
       {
-        q: 'The PDF layout looks “messed up” after translation?',
-        a: 'The left column reproduces the original layout, while the right column is the translation re-typeset independently of it. The two columns scroll separately and aren’t linked — this is by design, not a bug.',
+        q: 'Paragraphs in a translated PDF are split wrongly, or columns run together?',
+        a: 'The reader rebuilds paragraphs locally from the position of the text, which can go wrong on complex pages with columns, tables or mixed text and figures. Turn on “Enhanced layout” in the toolbar, or click “Enhance layout” on a single page, to have the recognition service analyze the page layout first. You are asked for consent before the first use; the official service has a separate daily layout analysis quota, and once it runs out the reader falls back to local splitting until the next day.',
+      },
+      {
+        q: 'Why is some translated text smaller than the original?',
+        a: 'Translations are placed where the original text was. When they don’t fit, the font size shrinks, and blank space next to the original is borrowed when available. Translating from Chinese into other languages usually makes the text longer, so it ends up a little smaller. Hover over a translation to see the original; for truncated translations, hovering also shows the full text.',
       },
       {
         q: 'Can scanned PDFs be translated?',
-        a: 'No. The PDF reader only translates PDFs with extractable text and does not perform OCR. Scanned pages with no extractable text are skipped with a notice, never falsely reported as translated.',
+        a: 'Yes. The reader detects scanned pages automatically (including scans with a hidden text layer whose text is still in the image). Click “Recognize scanned pages” and those pages are sent to the recognition service, then their text is replaced in place with the translation. Scanned pages use the manga/document recognition quota, and results are cached locally so reopening a page doesn’t recognize it again. Pages that are only pictures, such as photos or illustrations, are shown as they are.',
+      },
+      {
+        q: 'Can I export the translated PDF?',
+        a: 'Yes. PDFs are exported with the browser’s “Save as PDF”, after every page has been loaded, translated and replaced. Markdown, TXT, SRT and HTML are rebuilt in their original format and downloaded directly.',
       },
     ],
   },
@@ -371,26 +387,26 @@ const en: FaqGroup[] = [
         q: 'Can LingVa see my API keys and the text I translate?',
         a: (
           <>
-            No. API keys are stored only in your browser and sent only to the matching translation provider. The text you translate goes straight from your browser to the translation service you chose — LingVa runs no proxy. Only manga and image translation sends images to LingVa’s image recognition service.
+            No. API keys are stored only in your browser and sent only to the matching translation provider. The text you translate goes straight from your browser to the translation service you chose — LingVa runs no proxy. Only manga and image translation, and the PDF reader’s scanned-page recognition and layout enhancement, send images to LingVa’s recognition service (layout enhancement also includes the positions and content of that page’s text).
             {' '}For full details, see the <Link to="/privacy" className="text-brand hover:underline">privacy policy</Link>.
           </>
         ),
       },
       {
         q: 'What data is stored in my browser?',
-        a: 'Settings and preferences, API keys and endpoint addresses, translation history, your vocabulary notebook (including each word’s original context, source URL and review progress), usage and cost statistics, and cached manga recognition results and translations are all stored in your browser’s IndexedDB and chrome.storage.local, and never uploaded. You can clear history, statistics and caches in the extension at any time.',
+        a: 'Settings and preferences, API keys and endpoint addresses, translation history, your vocabulary notebook (including each word’s original context, source URL and review progress), usage and cost statistics, and cached manga recognition results and translations and PDF scanned-page recognition and layout analysis results are all stored in your browser’s IndexedDB and chrome.storage.local, and never uploaded. You can clear history, statistics and caches in the extension at any time.',
       },
       {
         q: 'Besides translation services, what else does the extension send over the network?',
         a: 'When you look up a single word, that word is sent to a public dictionary API for pronunciation, definitions and examples. The extension also periodically downloads public model lists and price catalogs; these requests contain no personal information or translated content. With AI engines, neighboring text (for manga, the original text of neighboring pages) is sent to your chosen provider as context for more consistent translations.',
       },
       {
-        q: 'Where do manga images go? Are they stored?',
-        a: 'With the official recognition service, images are sent to LingVa’s recognition servers (in mainland China, Alibaba Cloud Beijing and Shanghai), used only to recognize text and produce a text-free version, and discarded right afterwards. They are never stored or used to train models. The server does not store raw IP addresses — only an irreversible hash for abuse prevention. If you’d rather your images not go to mainland China, use a self-hosted recognition server or don’t use manga and image translation.',
+        q: 'Where do manga images and PDF pages go? Are they stored?',
+        a: 'With the official recognition service, manga images, scanned PDF pages and — with layout enhancement on — PDF pages together with the positions and content of their text are sent to LingVa’s recognition servers (in mainland China, Alibaba Cloud Beijing and Shanghai). They are used only to recognize text, analyze the layout and produce a text-free version, and are discarded right afterwards: never stored or used to train models. The PDF file itself is never uploaded. The server does not store raw IP addresses — only an irreversible hash for abuse prevention. If you’d rather this not go to mainland China, use a self-hosted recognition server or don’t use manga and image translation, scanned-page recognition or layout enhancement.',
       },
       {
         q: 'What does the official recognition service record about me?',
-        a: 'Only a randomly generated installation ID (containing no device or personal information) and how many pages it processes each day, used to apply the daily quota. Daily records are kept for 90 days, then reduced to a total page count and last-used date. If you sponsor, order details are stored, with the payer identifier kept only as an irreversible hash. No account is needed, and no name, phone number, email or browsing history is collected.',
+        a: 'Only a randomly generated installation ID (containing no device or personal information) and how many pages it recognizes and sends for layout analysis each day, used to apply the daily quotas. Daily records are kept for 90 days, then reduced to a total recognized page count and last-used date. If you sponsor, order details are stored, with the payer identifier kept only as an irreversible hash. No account is needed, and no name, phone number, email or browsing history is collected.',
       },
       {
         q: 'How do I delete records about me on the recognition service?',

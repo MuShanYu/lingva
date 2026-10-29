@@ -22,6 +22,18 @@ const summaryRows: SummaryRow[] = [
   { data: 'Translation API keys', sent: 'No', tone: 'no', note: 'Stored locally; sent only to the matching provider' },
   { data: 'Text you translate', sent: 'No', tone: 'no', note: 'Sent directly from your browser to your chosen provider' },
   { data: 'Manga page images', sent: 'Yes (official service)', tone: 'yes', note: 'Discarded right after recognition; never stored' },
+  {
+    data: 'Single PDF page images',
+    sent: 'Yes (scanned-page recognition or layout enhancement)',
+    tone: 'yes',
+    note: 'Discarded right after processing; the PDF file itself is never uploaded',
+  },
+  {
+    data: 'Text and positions on a PDF page',
+    sent: 'Yes (layout enhancement)',
+    tone: 'yes',
+    note: 'Used only to divide the page into paragraphs and blocks; never stored',
+  },
   { data: 'IP address', sent: 'Raw address not stored', tone: 'no', note: 'Only an irreversible hash is kept, for abuse prevention' },
   { data: 'Installation ID and daily usage', sent: 'Yes (official service)', tone: 'yes', note: 'Used to apply the daily quota' },
   { data: 'Sponsorship orders', sent: 'Yes (if you sponsor)', tone: 'yes', note: 'Used to apply sponsor quota' },
@@ -30,15 +42,17 @@ const summaryRows: SummaryRow[] = [
 
 export default function PrivacyEn() {
   return (
-    <Page title="LingVa Privacy Policy" meta={['Effective: October 21, 2026', 'Last updated: October 21, 2026']}>
+    <Page title="LingVa Privacy Policy" meta={['Effective: October 21, 2026', 'Last updated: October 29, 2026']}>
       <Lead>
         In short:{' '}
         <B>
           your translation history, vocabulary, settings and API keys stay in your browser, and the text you translate goes straight from
           your browser to the translation provider you choose. It never passes through us.
         </B>{' '}
-        Only manga and image translation sends images to LingVa’s image recognition service. We do not store those images, we do not
-        store your IP address, you need no account, and the extension and recognition service use no analytics or advertising tools.
+        Only manga and image translation, and the PDF reader’s scanned-page recognition and layout enhancement (both turned on by you),
+        send images to LingVa’s recognition service; layout enhancement also includes the positions and content of that page’s text. We do
+        not store those images or that text, we do not store your IP address, you need no account, and the extension and recognition
+        service use no analytics or advertising tools.
       </Lead>
       <SummaryTable headers={['Data', 'Sent to us?', 'Notes']} rows={summaryRows} />
 
@@ -83,6 +97,7 @@ export default function PrivacyEn() {
           'Vocabulary notebook, including each word’s original context and source URL, and review progress',
           'Usage and cost statistics',
           'Cached manga recognition results and translations',
+          'Cached PDF scanned-page recognition and layout analysis results (keyed by a fingerprint of the file’s content, which is never uploaded)',
         ]}
       />
       <P>
@@ -127,18 +142,42 @@ export default function PrivacyEn() {
         viewing; it never changes requests made by the web page itself. Section 4 explains how the official recognition service handles
         this data.
       </P>
-
-      <H2 no={4}>What the official recognition service processes</H2>
-      <H3>4.1 Images</H3>
+      <H3>3.5 PDF</H3>
+      <P>
+        PDFs are opened and parsed in your browser, and <B>the file itself is never uploaded</B>. When translating, text extracted from the
+        PDF is sent to your chosen translation service as described in section 3.1. Single PDF pages are sent to the recognition service
+        you selected only in these two cases:
+      </P>
       <List
         items={[
-          'Images are used only to locate and recognize text and to produce a version with the original text removed. Results go straight back to your extension.',
+          <>
+            <B>Scanned-page recognition</B>: after you click “Recognize scanned pages”, an image rendered from each scanned page is sent to
+            recognize its text and, where the service supports it, to produce a version with the original text removed.
+          </>,
+          <>
+            <B>Layout enhancement</B>: we ask for your consent before you turn it on for the first time. Once it is on, the text pages you
+            are reading or about to reach are rendered to images and sent together with the text and position of each line in the page’s
+            text layer, to divide the page into paragraphs, headings, tables and other blocks.
+          </>,
+        ]}
+      />
+      <P>
+        Results are cached in your browser and reused when the same page is opened again, so it is not sent a second time. Section 4
+        explains how the official recognition service handles this data.
+      </P>
+
+      <H2 no={4}>What the official recognition service processes</H2>
+      <H3>4.1 Images and PDF pages</H3>
+      <List
+        items={[
+          'Manga images and PDF page images are used only to locate and recognize text, analyze the layout and produce a version with the original text removed. Results go straight back to your extension.',
           <>
             Images are <B>never stored</B> and are not used to train models or for any other purpose. During processing they are held in
             memory; images larger than 1 MB may be written to a temporary file that is deleted as soon as the request ends.
           </>,
-          'Recognized text and processed images are not kept on the server and are not logged.',
-          'Images are forwarded from the receiving server (Alibaba Cloud, Beijing) to the recognition server (Alibaba Cloud, Shanghai) over the cloud provider’s internal network, not the public internet.',
+          'The PDF text sent with layout enhancement is used only to assign text lines to their blocks. Like images, it is never stored or used for anything else.',
+          'Recognized text, text sent with a request and processed images are not kept on the server and are not logged.',
+          'Images and text are forwarded from the receiving server (Alibaba Cloud, Beijing) to the recognition server (Alibaba Cloud, Shanghai) over the cloud provider’s internal network, not the public internet.',
         ]}
       />
       <H3>4.2 IP address</H3>
@@ -166,8 +205,9 @@ export default function PrivacyEn() {
       </P>
       <H3>4.4 Daily usage</H3>
       <P>
-        To enforce the free daily quota, we record how many pages each installation ID processes per day. Daily records are kept for 90
-        days, then merged into a total page count and last-used date.
+        To enforce the free daily quotas, we record, per installation ID and day, how many pages it recognizes (manga, images and scanned
+        PDF pages combined) and how many pages it sends for layout analysis, counted separately. Daily records are kept for 90 days; then
+        recognized pages are merged into a total page count and last-used date, and layout analysis records are deleted.
       </P>
       <H3>4.5 Request summaries and logs</H3>
       <P>
@@ -194,7 +234,8 @@ export default function PrivacyEn() {
 
       <H2 no={5}>How we use this information</H2>
       <P>
-        Information received by the recognition service is used only to provide image recognition, apply daily quotas, apply sponsorships,
+        Information received by the recognition service is used only to provide image recognition and PDF layout analysis, apply daily
+        quotas, apply sponsorships,
         prevent abuse and keep the service stable, and measure overall usage and funding. We do not use it for advertising or profiling, we
         do not sell or transfer it to anyone, and we do not use it to determine creditworthiness or for lending.
       </P>
@@ -210,7 +251,7 @@ export default function PrivacyEn() {
           </>,
           <>
             <B>Legal requirements</B>: we provide information we actually hold only when required by law or by a competent authority.
-            Because we do not store images or raw IP addresses, we cannot provide them.
+            Because we do not store images, PDF text or raw IP addresses, we cannot provide them.
           </>,
         ]}
       />
@@ -219,8 +260,9 @@ export default function PrivacyEn() {
       <H2 no={7}>Where data is processed</H2>
       <P>
         The official recognition service runs on servers in <B>mainland China</B> (Alibaba Cloud, Beijing and Shanghai). If you use it
-        from outside mainland China, the images you send are transferred to mainland China for processing and discarded afterwards. If you
-        prefer otherwise, use a self-hosted server or do not use manga and image translation.
+        from outside mainland China, the images and PDF pages you send are transferred to mainland China for processing and discarded
+        afterwards. If you prefer otherwise, use a self-hosted server or do not use manga and image translation, scanned-page recognition
+        or layout enhancement.
       </P>
 
       <H2 no={8}>Security</H2>

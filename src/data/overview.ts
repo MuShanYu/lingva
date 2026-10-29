@@ -61,8 +61,8 @@ export const overviewTiles: OverviewTile[] = [
     id: 'pdf',
     title: { zh: 'PDF 翻译', en: 'PDF translation' },
     description: {
-      zh: '左右双栏对照阅读，保留原版式与表格结构。',
-      en: 'Read side by side in two columns, with the original layout and tables preserved.',
+      zh: '译文原位替换，保留原版式、字体与表格；扫描页也能识别翻译。',
+      en: 'Translations replace the original text in place, keeping the layout, fonts and tables; scanned pages can be recognized and translated too.',
     },
     icon: FileText,
     image: pdfImg,

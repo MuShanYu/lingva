@@ -6,15 +6,15 @@ import { useContent } from '@/i18n/context'
 
 const content = {
   zh: {
-    title: 'PDF 与文档，双栏对照着读',
-    desc: '左栏还原原版式，右栏重新排版展示译文，标题、列表、代码块、表格与图片各自识别、分别处理，扫描件会被自动识别并提示，不会误报翻译成功。',
-    note: '同一套阅读器还支持 Markdown、TXT、SRT、HTML，格式与排版保持不变。',
+    title: 'PDF 与文档，原版式对照着读',
+    desc: '译文直接替换在原文所在的位置，字体、颜色与版式保持不变，和原文逐页对照；旋转文字和竖排的中日文也能原位替换。扫描页一键识别后同样原位替换；多栏、表格较多的复杂页面可以开启版面增强，分段更准确。',
+    note: '翻译好的 PDF 可以用浏览器「另存为 PDF」导出。同一套阅读器还支持 Markdown、TXT、SRT、HTML，格式与排版保持不变，并可按原格式导出。',
     imgAlt: 'LingVa PDF 双语阅读器，左栏原文右栏译文对照',
   },
   en: {
-    title: 'Read PDFs and documents side by side',
-    desc: 'The left column keeps the original layout, the right column re-typesets the translation. Headings, lists, code blocks, tables and images are detected and handled separately. Scanned files are detected and flagged, never falsely reported as translated.',
-    note: 'The same reader also supports Markdown, TXT, SRT and HTML, with formatting and layout preserved.',
+    title: 'Read PDFs and documents in their original layout',
+    desc: 'Translations replace the original text right where it sits, keeping its fonts, colors and layout, page by page next to the original. Rotated text and vertical Chinese and Japanese are replaced in place too. Scanned pages are recognized with one click and replaced the same way, and complex pages with columns or many tables can use layout enhancement for more accurate paragraphs.',
+    note: 'Translated PDFs can be saved with the browser’s “Save as PDF”. The same reader also supports Markdown, TXT, SRT and HTML, with formatting and layout preserved and export in the original format.',
     imgAlt: 'LingVa bilingual PDF reader with the original on the left and the translation on the right',
   },
 }
