@@ -41,12 +41,12 @@ export default function Learning() {
   return (
     <section id="learning" className="relative overflow-hidden bg-white px-6 py-24">
       <SectionGlow position="right" />
-      <Reveal className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
+      <Reveal className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1.2fr]">
         <div>
           <span className="text-xs font-medium tracking-wide text-brand uppercase">
             Build your vocabulary
           </span>
-          <h2 className="mt-3 text-3xl font-semibold text-gray-900 sm:text-4xl">
+          <h2 className="mt-3 text-3xl font-semibold text-balance text-gray-900 sm:text-4xl">
             {t.title}
           </h2>
           <p className="mt-4 max-w-lg text-gray-500">

@@ -1,3 +1,4 @@
+import { ChartColumn, ImageIcon, Layers, ShieldCheck } from 'lucide-react'
 import { siPixiv } from 'simple-icons'
 import mangaImg from '@/assets/img/漫画翻译.png'
 import ScreenshotCard from '@/components/mockups/ScreenshotCard'
@@ -5,7 +6,13 @@ import Reveal from '@/components/Reveal'
 import SectionGlow from '@/components/SectionGlow'
 import { useContent } from '@/i18n/context'
 
-const SERVER_REPO = 'https://github.com/MuShanYu/lingva-image-server-pub'
+// 与 content.points 一一对应
+const pointStyles = [
+  { icon: ImageIcon, tone: 'bg-blue-50 text-blue-500' },
+  { icon: Layers, tone: 'bg-violet-50 text-violet-500' },
+  { icon: ChartColumn, tone: 'bg-emerald-50 text-emerald-500' },
+  { icon: ShieldCheck, tone: 'bg-orange-50 text-orange-500' },
+]
 
 const content = {
   zh: {
@@ -18,16 +25,12 @@ const content = {
       { name: 'コミックDAYS 等 GigaViewer 站点' },
     ],
     points: [
-      { title: '整部作品一起翻译', desc: '从悬浮球菜单打开漫画翻译面板，点一次开始；也可以按网站开启自动翻译，打开作品就开始。' },
-      { title: '译文直接盖在原图上', desc: '擦掉原文后按气泡排版译文，译成中文、日文时可跟随原文竖排；按住 Ctrl 随时查看原图。' },
-      { title: '进度一眼看清', desc: '面板显示整部作品进度、当前页附近的逐页状态和失败页，可暂停、继续、重新翻译本页。' },
-      { title: '出错不打断阅读', desc: '单页失败只在这一页提示并可重试；服务繁忙时整部作品自动等待重试，恢复后从中断处继续。' },
+      { title: '译文直接盖在原图上', desc: '擦掉原文后按气泡排版译文，译成中文、日文时可竖排；按住 Ctrl 随时查看原图。' },
+      { title: '整部作品一起翻译', desc: '从悬浮球菜单打开漫画翻译面板一键开始，也可以按网站开启自动翻译。' },
+      { title: '进度一眼看清', desc: '查看整部作品进度、逐页状态和失败页，可随时暂停、继续或重新翻译本页。' },
+      { title: '出错不打断阅读', desc: '单页失败只在这一页提示并可重试；服务繁忙时自动等待，恢复后从中断处继续。' },
     ],
     imageAlt: '在漫画网站上翻译漫画：译文直接排进气泡，右侧是漫画翻译进度面板',
-    serviceBefore:
-      '图片识别由 LingVa 官方识别服务完成：免注册，每天有免费额度，赞助可获得更多额度；识别过的页面会缓存在本机，再次阅读不消耗额度。也可以部署',
-    serviceLink: '开源的识别服务端',
-    serviceAfter: '，不限额度。开源服务端与官方服务使用同样的识别与擦字算法，效果完全一样，没有任何功能阉割。',
   },
   en: {
     title: 'Read translated manga right on the original site',
@@ -39,17 +42,12 @@ const content = {
       { name: 'コミックDAYS and other GigaViewer sites' },
     ],
     points: [
-      { title: 'Translate a whole work at once', desc: 'Open the manga panel from the floating ball menu and start with one click — or enable auto-translate per site so it starts as soon as you open a work.' },
-      { title: 'Translations laid over the artwork', desc: 'The original text is erased and the translation is typeset into each bubble, vertically when translating into Chinese or Japanese. Hold Ctrl to peek at the original anytime.' },
-      { title: 'Progress at a glance', desc: 'The panel shows overall progress, per-page status around the current page and failed pages. Pause, resume, or retranslate the current page.' },
-      { title: 'Errors don’t break your reading', desc: 'A failed page shows a notice on that page only and can be retried. When the service is busy, the whole work waits and retries automatically, then resumes where it left off.' },
+      { title: 'Translations laid over the artwork', desc: 'The original text is erased and the translation is typeset into each bubble, vertically for Chinese and Japanese. Hold Ctrl to peek at the original.' },
+      { title: 'Translate a whole work at once', desc: 'Open the manga panel from the floating ball menu and start with one click, or enable auto-translate per site.' },
+      { title: 'Progress at a glance', desc: 'See overall progress, per-page status and failed pages. Pause, resume or retranslate the current page anytime.' },
+      { title: 'Errors don’t break your reading', desc: 'A failed page shows a notice and can be retried. When the service is busy, the work waits and resumes where it left off.' },
     ],
     imageAlt: 'Translating manga on a manga site: translations typeset into the bubbles, with the manga translation progress panel on the right',
-    serviceBefore:
-      'Image recognition is handled by the official LingVa recognition service: no sign-up, a free daily quota, and more quota for sponsors. Recognized pages are cached locally, so rereading costs no quota. You can also deploy the ',
-    serviceLink: 'open-source recognition server',
-    serviceAfter:
-      ' with no quota limits. It uses exactly the same recognition and text-removal algorithms as the official service — same results, no features held back.',
   },
 }
 
@@ -83,28 +81,24 @@ export default function Manga() {
           </div>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
+        <div className="mt-14 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
           <ScreenshotCard src={mangaImg} alt={t.imageAlt} />
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {t.points.map((point) => (
-              <div key={point.title} className="rounded-2xl border border-gray-200 bg-white p-6">
-                <h3 className="text-sm font-medium text-gray-900">{point.title}</h3>
-                <p className="mt-2 text-xs leading-relaxed text-gray-500">{point.desc}</p>
-              </div>
-            ))}
-            <p className="text-xs leading-relaxed text-gray-400 sm:col-span-2">
-              {t.serviceBefore}
-              <a
-                href={SERVER_REPO}
-                target="_blank"
-                rel="noreferrer"
-                className="text-brand hover:underline"
-              >
-                {t.serviceLink}
-              </a>
-              {t.serviceAfter}
-            </p>
+          <div className="flex flex-col gap-8">
+            {t.points.map((point, i) => {
+              const { icon: Icon, tone } = pointStyles[i]
+              return (
+                <div key={point.title} className="flex items-start gap-4">
+                  <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${tone}`}>
+                    <Icon className="h-5 w-5" strokeWidth={1.75} />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900">{point.title}</h3>
+                    <p className="mt-1 text-sm leading-normal text-gray-500">{point.desc}</p>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </div>
       </Reveal>

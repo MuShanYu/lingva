@@ -20,11 +20,11 @@ export default function Overview() {
   return (
     <section id="overview" className="bg-white px-6 py-24">
       <Reveal className="mx-auto max-w-6xl">
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-4xl text-center">
           <span className="text-xs font-medium tracking-wide text-brand uppercase">
             One extension. Seven ways to understand.
           </span>
-          <h2 className="mt-3 text-3xl font-semibold text-gray-900 sm:text-4xl">
+          <h2 className="mt-3 text-3xl font-semibold text-balance text-gray-900 sm:text-4xl">
             {t.title}
           </h2>
         </div>

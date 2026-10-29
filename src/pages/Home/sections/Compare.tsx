@@ -34,7 +34,7 @@ export default function Compare() {
   return (
     <section id="compare" className="relative overflow-hidden bg-[#F8FAFC] px-6 py-24">
       <SectionGlow position="left" />
-      <Reveal className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
+      <Reveal className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
         <div className="order-2 lg:order-1">
           <ScreenshotCard src={compareImg} alt={t.imgAlt} />
         </div>
@@ -43,7 +43,7 @@ export default function Compare() {
           <span className="text-xs font-medium tracking-wide text-brand uppercase">
             Multi-model comparison
           </span>
-          <h2 className="mt-3 text-3xl font-semibold text-gray-900 sm:text-4xl">
+          <h2 className="mt-3 text-3xl font-semibold text-balance text-gray-900 sm:text-4xl">
             {t.title}
           </h2>
 
