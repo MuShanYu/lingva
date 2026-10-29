@@ -37,7 +37,7 @@ const summaryRows: SummaryRow[] = [
 
 export default function PrivacyZh() {
   return (
-    <Page title="LingVa 隐私政策" meta={['生效日期：2026 年 10 月 21 日', '最近更新：2026 年 10 月 29 日']}>
+    <Page title="LingVa 隐私政策" meta={['生效日期：2026 年 10 月 29 日', '最近更新：2026 年 10 月 29 日']}>
       <Lead>
         简单来说：
         <B>翻译历史、生词本、设置和 API Key 只保存在你的浏览器里；要翻译的文字由浏览器直接发给你选择的翻译服务，不经过我们。</B>

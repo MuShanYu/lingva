@@ -42,7 +42,7 @@ const summaryRows: SummaryRow[] = [
 
 export default function PrivacyEn() {
   return (
-    <Page title="LingVa Privacy Policy" meta={['Effective: October 21, 2026', 'Last updated: October 29, 2026']}>
+    <Page title="LingVa Privacy Policy" meta={['Effective: October 29, 2026', 'Last updated: October 29, 2026']}>
       <Lead>
         In short:{' '}
         <B>
