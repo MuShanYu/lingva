@@ -12,26 +12,26 @@ import { useContent } from '@/i18n/context'
 const content = {
   zh: {
     title: '现在开始，专注阅读',
-    desc: '安装 LingVa，让翻译真正属于你。永久免费，不追踪，可自带 API。',
-    cta: '添加到 Chrome',
+    desc: '安装 LingVa，让翻译真正属于你。基础翻译免费、无广告；需要时可接入自己的 AI API。',
+    cta: '查看项目与安装方式',
     note: '免费 · 无广告 · 隐私安全',
     badges: [
       { icon: IconFree, label: '免费' },
       { icon: IconNoAds, label: '无广告' },
-      { icon: IconNoBackend, label: '无后端' },
+      { icon: IconNoBackend, label: '本地优先' },
       { icon: IconNoTracking, label: '不追踪' },
       { icon: IconByoa, label: '自带 API' },
     ],
   },
   en: {
     title: 'Start now, stay focused on reading',
-    desc: 'Install LingVa and make translation truly yours. Free forever, no tracking, bring your own API.',
-    cta: 'Add to Chrome',
+    desc: 'Install LingVa and make translation truly yours. Free core translation, no ads, and optional bring-your-own AI API.',
+    cta: 'View project & install options',
     note: 'Free · No ads · Privacy first',
     badges: [
       { icon: IconFree, label: 'Free' },
       { icon: IconNoAds, label: 'No ads' },
-      { icon: IconNoBackend, label: 'No backend' },
+      { icon: IconNoBackend, label: 'Local-first' },
       { icon: IconNoTracking, label: 'No tracking' },
       { icon: IconByoa, label: 'Bring your own API' },
     ],
@@ -42,7 +42,7 @@ export default function Cta() {
   const t = useContent(content)
 
   return (
-    <section className="relative overflow-hidden bg-[#0b0d12] px-6 py-24 text-center">
+    <section className="relative overflow-hidden bg-[#0b0d12] px-6 py-16 text-center sm:py-20">
       <MountainBand />
 
       <Reveal className="relative mx-auto max-w-2xl">
@@ -54,7 +54,7 @@ export default function Cta() {
 
         <div className="mt-8">
           <a
-            href="#"
+            href="https://github.com/MuShanYu/lingva"
             className="rounded-full bg-gradient-to-r from-brand to-accent-purple px-8 py-3 text-sm font-medium text-white shadow-lg shadow-brand/30 transition hover:opacity-90"
           >
             {t.cta}

@@ -19,13 +19,13 @@ const content = {
     titleTail: '你的阅读。',
     subtitle:
       'LingVa 是一款为阅读而生的 Chrome 翻译扩展。划词、网页、视频字幕、PDF 与文档、漫画，一处配置，随处翻译。',
-    cta: '添加到 Chrome',
+    cta: '查看项目与安装方式',
     badges: [
-      { icon: IconShieldCheck, label: '完全免费' },
+      { icon: IconShieldCheck, label: '基础翻译免费使用' },
       { icon: IconNoAds, label: '无广告' },
       { icon: IconLocalFirst, label: '数据本地存储' },
-      { icon: IconNoTracking, label: '隐私安全' },
-      { icon: IconControl, label: '完全自主控制' },
+      { icon: IconNoTracking, label: '本地优先' },
+      { icon: IconControl, label: '可自选引擎' },
     ],
     imgAlt: 'LingVa 划词翻译弹窗，展示词典卡片',
   },
@@ -35,13 +35,13 @@ const content = {
     titleTail: ' your reading.',
     subtitle:
       'LingVa is a Chrome translation extension built for reading. Selected text, web pages, video subtitles, PDFs and documents, manga — configure once, translate everywhere.',
-    cta: 'Add to Chrome',
+    cta: 'View project & install options',
     badges: [
-      { icon: IconShieldCheck, label: 'Completely free' },
+      { icon: IconShieldCheck, label: 'Free core translation' },
       { icon: IconNoAds, label: 'No ads' },
       { icon: IconLocalFirst, label: 'Data stays local' },
-      { icon: IconNoTracking, label: 'Privacy first' },
-      { icon: IconControl, label: 'Fully in your control' },
+      { icon: IconNoTracking, label: 'Local-first' },
+      { icon: IconControl, label: 'Your choice of engines' },
     ],
     imgAlt: 'LingVa selection translation popup with a dictionary card',
   },
@@ -52,16 +52,16 @@ export default function Hero() {
   const t = content[locale]
 
   return (
-    <section className="relative overflow-hidden pt-32 pb-20">
+    <section className="relative overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-20">
       <div className="absolute inset-0 h-[640px]">
         <Aurora colorStops={['#1677ff', '#7c3aed', '#1677ff']} amplitude={0.8} blend={0.4} lightMode />
       </div>
       <div className="absolute inset-0 h-[640px] bg-gradient-to-b from-transparent to-white" />
 
-      <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 px-6 lg:grid-cols-2">
+      <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-6 lg:grid-cols-2">
         <div>
           <span className="inline-block rounded-full bg-brand/10 px-4 py-1 text-xs font-medium text-brand">
-            FREE · NO ADS
+            LINGVA · READING FIRST
           </span>
 
           {/* SplitText / BlurText 只在挂载时拆分文字，切换语言要靠 key 重新挂载 */}
@@ -89,14 +89,14 @@ export default function Hero() {
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
               id="download"
-              href="#"
+              href="https://github.com/MuShanYu/lingva"
               className="rounded-full bg-gradient-to-r from-brand to-accent-purple px-6 py-3 text-sm font-medium text-white shadow-lg shadow-brand/25 transition hover:opacity-90"
             >
               {t.cta}
             </a>
           </div>
 
-          <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
+          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
             {t.badges.map((badge) => (
               <div key={badge.label} className="flex items-center gap-2 text-sm text-gray-500">
                 <badge.icon className="h-4 w-4 text-gray-400" />
