@@ -1,6 +1,6 @@
 import ScreenshotCard from '@/components/mockups/ScreenshotCard'
 import EngineList from '@/components/mockups/EngineList'
-import engineImg from '@/assets/img/设置页的引擎选择器.png'
+import engineImg from '@/assets/img/设置页的引擎选择器.webp'
 import Reveal from '@/components/Reveal'
 import SectionGlow from '@/components/SectionGlow'
 import { useContent } from '@/i18n/context'

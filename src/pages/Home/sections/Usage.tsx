@@ -1,5 +1,5 @@
 import ScreenshotCard from '@/components/mockups/ScreenshotCard'
-import usage1Img from '@/assets/img/用量-1.png'
+import usage1Img from '@/assets/img/用量-1.webp'
 import Reveal from '@/components/Reveal'
 import SectionGlow from '@/components/SectionGlow'
 import { useContent } from '@/i18n/context'

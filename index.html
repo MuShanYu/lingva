@@ -2,6 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- 进场动画的隐藏状态只在 JS 可用时生效（见 index.css 的 [data-reveal]） -->
+    <script>
+      document.documentElement.classList.add('js')
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-S9Q4656GG4"></script>
     <script>
@@ -20,6 +24,27 @@
       content="LingVa — a browser extension for multi-engine selection translation, full-page translation, bilingual subtitles and PDF/document translation"
     />
     <title>LingVa · Multi-engine translation browser extension</title>
+    <!-- 以下标签的 content 由 scripts/prerender.mjs 按页面改写，改名或删除时同步改脚本 -->
+    <link rel="canonical" href="https://lingva.mushanyu.xyz/" />
+    <meta name="theme-color" content="#1677ff" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="LingVa" />
+    <meta property="og:url" content="https://lingva.mushanyu.xyz/" />
+    <meta property="og:title" content="LingVa · Multi-engine translation browser extension" />
+    <meta
+      property="og:description"
+      content="LingVa — a browser extension for multi-engine selection translation, full-page translation, bilingual subtitles and PDF/document translation"
+    />
+    <meta property="og:image" content="https://lingva.mushanyu.xyz/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="LingVa · Multi-engine translation browser extension" />
+    <meta
+      name="twitter:description"
+      content="LingVa — a browser extension for multi-engine selection translation, full-page translation, bilingual subtitles and PDF/document translation"
+    />
+    <meta name="twitter:image" content="https://lingva.mushanyu.xyz/og-image.png" />
     <script type="text/javascript">
       // 配合 public/404.html：把编码进 query 的深链路径还原成真实路径，再交给 react-router。
       ;(function (l) {

@@ -1,7 +1,7 @@
 import ScreenshotCard from '@/components/mockups/ScreenshotCard'
 import SettingsCardMock from '@/components/mockups/SettingsCardMock'
 import PlatformList from '@/components/mockups/PlatformList'
-import subtitleImg from '@/assets/img/视频双语字幕.png'
+import subtitleImg from '@/assets/img/视频双语字幕.webp'
 import Reveal from '@/components/Reveal'
 import SectionGlow from '@/components/SectionGlow'
 import { useContent } from '@/i18n/context'

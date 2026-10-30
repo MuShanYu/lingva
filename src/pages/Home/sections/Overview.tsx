@@ -41,6 +41,8 @@ export default function Overview() {
                   <img
                     src={tile.image}
                     alt={tile.title[locale]}
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
                     style={{ objectPosition: tile.position }}
                   />

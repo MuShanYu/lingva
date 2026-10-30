@@ -21,3 +21,25 @@ body {
   background: #ffffff;
   color: #1f2329;
 }
+
+/* Reveal 组件的进场动画：只在 JS 可用时隐藏（index.html 会给 <html> 加 js 类） */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
+}
+
+.js [data-reveal='shown'] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

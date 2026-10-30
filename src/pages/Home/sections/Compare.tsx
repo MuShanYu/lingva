@@ -1,6 +1,6 @@
 import { GitCompare, Highlighter, ArrowLeftRight } from 'lucide-react'
 import ScreenshotCard from '@/components/mockups/ScreenshotCard'
-import compareImg from '@/assets/img/多引擎对比高亮.png'
+import compareImg from '@/assets/img/多引擎对比高亮.webp'
 import Reveal from '@/components/Reveal'
 import SectionGlow from '@/components/SectionGlow'
 import { useContent } from '@/i18n/context'

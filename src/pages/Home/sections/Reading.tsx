@@ -1,5 +1,5 @@
 import ScreenshotCard from '@/components/mockups/ScreenshotCard'
-import pdfImg from '@/assets/img/PDF 双语阅读器.png'
+import pdfImg from '@/assets/img/PDF 双语阅读器.webp'
 import Reveal from '@/components/Reveal'
 import SectionGlow from '@/components/SectionGlow'
 import { useContent } from '@/i18n/context'

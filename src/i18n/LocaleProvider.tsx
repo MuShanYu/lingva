@@ -1,21 +1,11 @@
 import { useEffect, useState, type ReactNode } from 'react'
+import { useLocation } from 'react-router-dom'
 import { LocaleContext, LOCALES, type Locale } from './context'
+import { getPageMeta } from './pageMeta'
 
 const STORAGE_KEY = 'lingva-web:locale'
 
-const meta: Record<Locale, { htmlLang: string; title: string; description: string }> = {
-  zh: {
-    htmlLang: 'zh-CN',
-    title: 'LingVa · 多引擎智能翻译浏览器扩展',
-    description: 'LingVa —— 多引擎划词翻译、网页整页翻译、双语字幕与 PDF/文档翻译的浏览器扩展',
-  },
-  en: {
-    htmlLang: 'en',
-    title: 'LingVa · Multi-engine translation browser extension',
-    description:
-      'LingVa — a browser extension for multi-engine selection translation, full-page translation, bilingual subtitles and PDF/document translation',
-  },
-}
+const htmlLang: Record<Locale, string> = { zh: 'zh-CN', en: 'en' }
 
 /** 默认英文；用户手动切换过语言后记住选择。 */
 function detectLocale(): Locale {
@@ -31,12 +21,14 @@ function detectLocale(): Locale {
 export function LocaleProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(detectLocale)
 
+  // 标题和描述跟随当前页面与语言，切换路由或语言时都要更新
+  const { pathname } = useLocation()
   useEffect(() => {
-    const m = meta[locale]
-    document.documentElement.lang = m.htmlLang
+    const m = getPageMeta(pathname, locale)
+    document.documentElement.lang = htmlLang[locale]
     document.title = m.title
     document.querySelector('meta[name="description"]')?.setAttribute('content', m.description)
-  }, [locale])
+  }, [locale, pathname])
 
   const setLocale = (next: Locale) => {
     setLocaleState(next)

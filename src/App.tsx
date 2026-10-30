@@ -1,10 +1,9 @@
-import { useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Home from '@/pages/Home/Home'
-import Privacy from '@/pages/Privacy/Privacy'
-import Help from '@/pages/Help/Help'
+import { Help, Privacy } from '@/routes'
 
 /**
  * 路由切换后的滚动位置管理：带 hash 时滚动到锚点（跨路由跳转要等新页面挂载完锚点才存在，
@@ -33,11 +32,13 @@ function App() {
     <div className="min-h-screen bg-white">
       <Header />
       <ScrollRestoration />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/help" element={<Help />} />
-      </Routes>
+      <Suspense fallback={<div className="min-h-screen" />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/help" element={<Help />} />
+        </Routes>
+      </Suspense>
       <Footer />
     </div>
   )

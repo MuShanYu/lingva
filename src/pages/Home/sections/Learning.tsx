@@ -1,7 +1,7 @@
 import { TextSelect, BookOpen, Star, RotateCcw, Brain } from 'lucide-react'
 import ScreenshotCard from '@/components/mockups/ScreenshotCard'
 import ProcessSteps from '@/components/mockups/ProcessSteps'
-import vocabListImg from '@/assets/img/生词本列表.png'
+import vocabListImg from '@/assets/img/生词本列表.webp'
 import Reveal from '@/components/Reveal'
 import SectionGlow from '@/components/SectionGlow'
 import { useContent } from '@/i18n/context'

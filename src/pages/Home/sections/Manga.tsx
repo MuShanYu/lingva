@@ -1,6 +1,6 @@
 import { ChartColumn, ImageIcon, Layers, ShieldCheck } from 'lucide-react'
 import { siPixiv } from 'simple-icons'
-import mangaImg from '@/assets/img/漫画翻译.png'
+import mangaImg from '@/assets/img/漫画翻译.webp'
 import ScreenshotCard from '@/components/mockups/ScreenshotCard'
 import Reveal from '@/components/Reveal'
 import SectionGlow from '@/components/SectionGlow'
@@ -84,11 +84,11 @@ export default function Manga() {
         <div className="mt-14 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
           <ScreenshotCard src={mangaImg} alt={t.imageAlt} />
 
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-3">
             {t.points.map((point, i) => {
               const { icon: Icon, tone } = pointStyles[i]
               return (
-                <div key={point.title} className="flex items-start gap-4">
+                <div key={point.title} className="flex items-start gap-4 rounded-2xl bg-brand/5 px-5 py-4">
                   <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${tone}`}>
                     <Icon className="h-5 w-5" strokeWidth={1.75} />
                   </div>

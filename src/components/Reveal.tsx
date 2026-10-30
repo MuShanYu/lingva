@@ -1,6 +1,10 @@
-import { motion } from 'motion/react'
-import type { ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 
+/**
+ * 进入视口时淡入上移。只用 IntersectionObserver + CSS 过渡（样式见 index.css 的 [data-reveal]），
+ * 不引入动画库，首页主包里因此不带 motion。
+ * 隐藏的初始状态只在 <html class="js"> 下生效：不执行 JS 的爬虫读到的预渲染 HTML 内容是可见的。
+ */
 export default function Reveal({
   children,
   delay = 0,
@@ -10,15 +14,33 @@ export default function Reveal({
   delay?: number
   className?: string
 }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [shown, setShown] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShown(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.2 },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <motion.div
+    <div
+      ref={ref}
       className={className}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, delay, ease: 'easeOut' }}
+      data-reveal={shown ? 'shown' : ''}
+      style={delay ? { transitionDelay: `${delay}s` } : undefined}
     >
       {children}
-    </motion.div>
+    </div>
   )
 }

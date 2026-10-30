@@ -1,11 +1,11 @@
 import type { LucideIcon } from 'lucide-react'
 import { TextSelect, Globe, Captions, FileText, FileStack, GitCompare, BookOpen } from 'lucide-react'
-import selectionImg from '@/assets/img/划词翻译.png'
-import webPageImg from '@/assets/img/网页翻译.png'
-import videoImg from '@/assets/img/视频双语字幕-1.png'
-import pdfImg from '@/assets/img/总览-PDF 双语阅读器.png'
-import documentImg from '@/assets/img/文档翻译.png'
-import compareImg from '@/assets/img/多引擎对比高亮-1.png'
+import selectionImg from '@/assets/img/划词翻译.webp'
+import webPageImg from '@/assets/img/网页翻译.webp'
+import videoImg from '@/assets/img/视频双语字幕-1.webp'
+import pdfImg from '@/assets/img/总览-PDF 双语阅读器.webp'
+import documentImg from '@/assets/img/文档翻译.webp'
+import compareImg from '@/assets/img/多引擎对比高亮-1.webp'
 
 import type { Localized } from '@/i18n/context'
 

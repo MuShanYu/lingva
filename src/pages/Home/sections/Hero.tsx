@@ -1,8 +1,6 @@
-import Aurora from '@/components/react-bits/Aurora'
-import SplitText from '@/components/react-bits/SplitText'
-import BlurText from '@/components/react-bits/BlurText'
+import { lazy, Suspense, useState } from 'react'
 import ScreenshotCard from '@/components/mockups/ScreenshotCard'
-import wordPopupImg from '@/assets/img/划词翻译弹窗（带词典卡片）.png'
+import wordPopupImg from '@/assets/img/划词翻译弹窗（带词典卡片）.webp'
 import {
   IconShieldCheck,
   IconNoAds,
@@ -11,6 +9,20 @@ import {
   IconControl,
 } from '@/components/icons'
 import { useLocale } from '@/i18n/context'
+
+// Aurora 依赖 WebGL 库 ogl，单独拆包异步加载；系统开启"减少动态效果"时不加载
+const Aurora = lazy(() => import('@/components/react-bits/Aurora'))
+// SplitText 依赖 gsap（约 120KB），同样拆包；加载完成前先显示同样排版的静态标题
+const SplitText = lazy(() => import('@/components/react-bits/SplitText'))
+const titleLeadClass = 'block text-4xl font-semibold text-gray-900 sm:text-5xl'
+// BlurText 依赖 motion，同理拆包
+const BlurText = lazy(() => import('@/components/react-bits/BlurText'))
+const subtitleClass = 'mt-6 max-w-lg text-base text-gray-500 sm:text-lg'
+
+// 预渲染时没有 window，不输出 Aurora；客户端渲染（不做 hydrate）时再按系统设置决定
+function shouldShowAurora() {
+  return typeof window !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
 
 const content = {
   zh: {
@@ -50,11 +62,16 @@ const content = {
 export default function Hero() {
   const { locale } = useLocale()
   const t = content[locale]
+  const [showAurora] = useState(shouldShowAurora)
 
   return (
     <section className="relative overflow-hidden pt-32 pb-20">
       <div className="absolute inset-0 h-[640px]">
-        <Aurora colorStops={['#1677ff', '#7c3aed', '#1677ff']} amplitude={0.8} blend={0.4} lightMode />
+        {showAurora && (
+          <Suspense fallback={null}>
+            <Aurora colorStops={['#1677ff', '#7c3aed', '#1677ff']} amplitude={0.8} blend={0.4} lightMode />
+          </Suspense>
+        )}
       </div>
       <div className="absolute inset-0 h-[640px] bg-gradient-to-b from-transparent to-white" />
 
@@ -66,25 +83,34 @@ export default function Hero() {
 
           {/* SplitText / BlurText 只在挂载时拆分文字，切换语言要靠 key 重新挂载 */}
           <h1 className="mt-6">
-            <SplitText
-              key={`title-${locale}`}
-              text={t.titleLead}
-              tag="span"
-              className="block text-4xl font-semibold text-gray-900 sm:text-5xl"
-              splitType="words"
-            />
+            <Suspense
+              fallback={
+                // 与 SplitText 渲染出的外层标签保持同样的 class 和对齐，替换时不跳动
+                <span
+                  className={`split-parent inline-block overflow-hidden whitespace-normal ${titleLeadClass}`}
+                  style={{ textAlign: 'center', wordWrap: 'break-word' }}
+                >
+                  {t.titleLead}
+                </span>
+              }
+            >
+              <SplitText
+                key={`title-${locale}`}
+                text={t.titleLead}
+                tag="span"
+                className={titleLeadClass}
+                splitType="words"
+              />
+            </Suspense>
             <span className="block text-4xl font-semibold sm:text-5xl">
               <span className="bg-gradient-to-r from-brand to-accent-purple bg-clip-text text-transparent">{t.titleAccent}</span>
               <span className="text-gray-900">{t.titleTail}</span>
             </span>
           </h1>
 
-          <BlurText
-            key={`subtitle-${locale}`}
-            text={t.subtitle}
-            className="mt-6 max-w-lg text-base text-gray-500 sm:text-lg"
-            animateBy="words"
-          />
+          <Suspense fallback={<p className={`blur-text ${subtitleClass} flex flex-wrap`}>{t.subtitle}</p>}>
+            <BlurText key={`subtitle-${locale}`} text={t.subtitle} className={subtitleClass} animateBy="words" />
+          </Suspense>
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
@@ -107,7 +133,7 @@ export default function Hero() {
         </div>
 
         <div>
-          <ScreenshotCard src={wordPopupImg} alt={t.imgAlt} />
+          <ScreenshotCard src={wordPopupImg} alt={t.imgAlt} width={1600} height={900} priority className="h-auto" />
         </div>
       </div>
     </section>
